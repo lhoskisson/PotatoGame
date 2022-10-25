@@ -7,8 +7,12 @@ public class FarmerMovement : MonoBehaviour
     
     public float speed = 10f;
 
-    void Update()
-    {
+    void Update(){
+
+        Movement();
+
+    }
+    public void Movement(){
         if (Input.GetKey("w")){
             transform.position += transform.up * (speed * Time.smoothDeltaTime);
         }
@@ -20,14 +24,14 @@ public class FarmerMovement : MonoBehaviour
             
         if (Input.GetKey("a")){
             transform.Translate(Vector3.left * (speed * Time.smoothDeltaTime));
-            Quaternion farmerRotation = Quaternion.LookRotation(Vector3.left);
+            // Quaternion farmerRotation = Quaternion.LookRotation(Vector3.left);
 
         }
             
         if (Input.GetKey("d")){
             transform.Translate(Vector3.right * (speed * Time.smoothDeltaTime)); 
-            Quaternion farmerRotation = Quaternion.LookRotation(Vector3.right);
+            // Quaternion farmerRotation = Quaternion.LookRotation(Vector3.right);
 
-        }
+        }      
     }
 }
