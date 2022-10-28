@@ -15,6 +15,7 @@ public class cSpawnPointBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // try a for loop if you have trouble delaying carrot spawns
         checkCarrotCount();
     }
 
@@ -28,7 +29,7 @@ public class cSpawnPointBehavior : MonoBehaviour
 
     private void spawnCarrot()
     {
-        // these are the spawn conditions that we can tweak with, currently it
+        // these are the spawn conditions that we can tweak with, this code
         // spawns them within 10% of the x and y outside of the camera view
         /*
         float randX = Random.Range(1f, 1.1f);
@@ -37,7 +38,12 @@ public class cSpawnPointBehavior : MonoBehaviour
         randPos = Camera.main.ViewportToWorldPoint(randPos);
         */
         // increasing carrot count and spawning
+
+        // try spawning the carrots within an area around the spawn point.
         CarrotBehavior.carrotCount++;
-        Instantiate(carrotPrefab, gameObject.transform.position, Quaternion.identity);
+        float newX = gameObject.transform.position.x + (Random.Range(1f, 3f));
+        float newY = gameObject.transform.position.y + (Random.Range(1f, 3f));
+        Vector3 newPos = new Vector3(newX, newY, 0);
+        Instantiate(carrotPrefab, newPos, Quaternion.identity);
     }
 }
