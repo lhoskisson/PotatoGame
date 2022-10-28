@@ -5,18 +5,41 @@ using UnityEngine;
 public class PotatoManager : MonoBehaviour
 {
 	public GameObject potato_crop;
+	private List<GameObject> spawned_potatoes;
     // Start is called before the first frame update
     void Start()
     {
+		spawned_potatoes = new List<GameObject>();
         SpawnPotatoes(new Vector3(0,0,1), 5, 100);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 	
+	/*
+		Searches the list of spawned potatoes and returns the one closest to the given location
+	*/
+	public GameObject GetClosestPotato(Vector3 location)
+	{
+		if(spawned_potatoes.Count == 0) return null;
+		
+		GameObject closest_potato = null;
+		float closest_distance = float.MaxValue;
+		foreach(GameObject potato in spawned_potatoes)
+		{
+			if(closest_potato == null)
+			{
+				closest_potato = potato;
+				closest_distance = Vector3.Distance(location, potato.transform.position);
+			}
+			if(Vector3.Distance(location, potato.transform.position) < closest_distance)
+			{
+				closest_potato = potato;
+				closest_distance = Vector3.Distance(location, potato.transform.position);
+			}
+		}
+		return closest_potato;
+	}
+	
+	public void RemovePotato(){}
+
 	/*
 		Spawns the Potato_Crop prefabs based on the given parameters.The parameters describe an area 
 		in which the potatoes are placed, as well as the density and distribution of potatoes in the area.
@@ -27,6 +50,8 @@ public class PotatoManager : MonoBehaviour
 		density: The amount of potatoes per squared world unit.
 		shape: 0 is a circle, 1 is a square.
 		even: Set to true for an even distribution, otherwise uses a random distribution.
+		
+		CURRENTLY ONLY IMPLEMENTED FOR EVEN SQUARES
 	*/
 	public void SpawnPotatoes(Vector3 location, float radius, float density, int shape=1, bool even=true)
 	{
@@ -75,7 +100,7 @@ public class PotatoManager : MonoBehaviour
 					{
 						Vector3 spawn_location = 
 						new Vector3(top_left.x+(i*increment)+center_adjust, top_left.y-(j*increment)-center_adjust, top_left.z);
-						Instantiate(potato_crop, spawn_location, Quaternion.identity);
+						spawned_potatoes.Add(Instantiate(potato_crop, spawn_location, Quaternion.identity) as GameObject);
 					}
 				}
 			}
