@@ -8,8 +8,11 @@ public class FarmerMovement : MonoBehaviour
     public float speed = 10f;
 
     void Update(){
-
         Movement();
+		/* //Rotating Camera
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0f;
+        transform.up = mouse - transform.position; */
 
     }
     public void Movement(){

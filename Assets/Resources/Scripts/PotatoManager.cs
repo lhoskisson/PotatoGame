@@ -19,6 +19,7 @@ public class PotatoManager : MonoBehaviour
 	public GameObject GetClosestPotato(Vector3 location)
 	{
 		if(spawned_potatoes.Count == 0) return null;
+
 		
 		GameObject closest_potato = null;
 		float closest_distance = float.MaxValue;
@@ -38,8 +39,17 @@ public class PotatoManager : MonoBehaviour
 		return closest_potato;
 	}
 	
-	public void RemovePotato(){}
-
+	public void RemovePotato(GameObject p)
+	{
+		for(int i=0; i<spawned_potatoes.Count; i++)
+		{
+			if(spawned_potatoes[i] == p)
+			{
+				spawned_potatoes.RemoveAt(i);
+				Destroy(p);
+			}
+		}
+	}
 	/*
 		Spawns the Potato_Crop prefabs based on the given parameters.The parameters describe an area 
 		in which the potatoes are placed, as well as the density and distribution of potatoes in the area.

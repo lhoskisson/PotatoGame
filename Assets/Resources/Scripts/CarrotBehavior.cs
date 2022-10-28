@@ -9,10 +9,11 @@ public class CarrotBehavior : MonoBehaviour
     public static int carrotCount;
     public int carrotHealth = 100;
     public float carrotSpeed = 1f;
-    public GameObject testDummy;
+    public GameObject targetPotato;
     public GameObject carrotPrefab;
     public bool hasTouchedPotato;
-
+	public GameObject potatoManager;
+	public int carrotDamage = 1;
     // private bool nearPotato = false;
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,14 @@ public class CarrotBehavior : MonoBehaviour
         // this work with multiple potatoes? will we need to check for 
         // Potato, Potato2, etc or can we work through this another way depending
         // on how we implement the potato plots.
-        testDummy = GameObject.Find("Potato");
+        //potatoManager = Resources.Load<GameObject>("Prefabs/Potato Manager");
+		potatoManager = GameObject.Find("Potato Manager");
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveToPotato(testDummy.transform.position);
+        moveToPotato();
         // IF STATEMENT ONLY HERE FOR TESTING, SHOULD BE REMOVED LATER
         if(Input.GetKeyDown("k"))
         {
@@ -36,11 +38,17 @@ public class CarrotBehavior : MonoBehaviour
         }
     }
 
-    private void moveToPotato(Vector3 potatoPosition)
+    private void moveToPotato()
     {
-        if(hasTouchedPotato != true)
+		if(targetPotato == null)
+		{
+			targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
+			//Debug.Log("targetPotato: " + targetPotato.transform.position);
+			hasTouchedPotato = false;
+		}
+        if(hasTouchedPotato != true && targetPotato != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, potatoPosition,
+            transform.position = Vector3.MoveTowards(transform.position, targetPotato.transform.position,
                 (carrotSpeed * Time.smoothDeltaTime));
         }
     }
@@ -65,7 +73,7 @@ public class CarrotBehavior : MonoBehaviour
             // carrots are a low level enemy and get killed with one potato.
             Destroy(gameObject);
         }
-        if(collision.gameObject.tag == "Potato")
+        if(collision.gameObject.tag == "Crop")
         {
             // how are we going to know when to flip this bit again?
             // it cannot be accessed in other scripts because the variable 
