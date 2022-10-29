@@ -10,14 +10,9 @@ public class FarmerMovement : MonoBehaviour
     void Update(){
 
         Movement();
-<<<<<<< Updated upstream:Assets/FarmerMovement.cs
-<<<<<<< Updated upstream:Assets/FarmerMovement.cs
-=======
 		MouseRotation();
->>>>>>> Stashed changes:Assets/Resources/Scripts/FarmerMovement.cs
-=======
-        MouseRotation();
->>>>>>> Stashed changes:Assets/Resources/Scripts/FarmerMovement.cs
+
+
 
     }
     public void Movement(){
@@ -41,15 +36,9 @@ public class FarmerMovement : MonoBehaviour
     }
     public void MouseRotation(){
         
-<<<<<<< Updated upstream:Assets/FarmerMovement.cs
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouse.z = 0f;
-        transform.up = mouse - transform.position;
-=======
         //Rotating Camera
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0f;
         transform.up = mouse - transform.position; 
->>>>>>> Stashed changes:Assets/Resources/Scripts/FarmerMovement.cs
     }
 }
