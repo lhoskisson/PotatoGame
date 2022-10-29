@@ -9,32 +9,22 @@ public class FarmerMovement : MonoBehaviour
 
     void Update(){
         Movement();
-		/* //Rotating Camera
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouse.z = 0f;
-        transform.up = mouse - transform.position; */
+		MouseRotation();
 
     }
     public void Movement(){
-        if (Input.GetKey("w")){
-            transform.position += transform.up * (speed * Time.smoothDeltaTime);
-        }
-            
-        if (Input.GetKey("s")){
-            transform.position -= transform.up * (speed * Time.smoothDeltaTime);
 
-        }
-            
-        if (Input.GetKey("a")){
-            transform.Translate(Vector3.left * (speed * Time.smoothDeltaTime));
-            // Quaternion farmerRotation = Quaternion.LookRotation(Vector3.left);
+        //Movement using WASD keys
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
 
-        }
-            
-        if (Input.GetKey("d")){
-            transform.Translate(Vector3.right * (speed * Time.smoothDeltaTime)); 
-            // Quaternion farmerRotation = Quaternion.LookRotation(Vector3.right);
-
-        }      
+        Vector3 moveFarmer = new Vector3(x, y, 0f);
+        transform.position += moveFarmer * (speed * Time.smoothDeltaTime);   
+    }
+    public void MouseRotation(){
+        //Rotating Camera
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0f;
+        transform.up = mouse - transform.position;
     }
 }
