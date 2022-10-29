@@ -15,21 +15,11 @@ public class FarmerMovement : MonoBehaviour
     public void Movement(){
 
         //Movement using WASD keys
-        if (Input.GetKey("w")){
-            transform.position += transform.up * (speed * Time.smoothDeltaTime);
-        }
-            
-        if (Input.GetKey("s")){
-            transform.position -= transform.up * (speed * Time.smoothDeltaTime);
-        }
-            
-        if (Input.GetKey("a")){
-            transform.Translate(Vector3.left * (speed * Time.smoothDeltaTime));
-        }
-            
-        if (Input.GetKey("d")){
-            transform.Translate(Vector3.right * (speed * Time.smoothDeltaTime));
-        }      
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+
+        Vector3 moveFarmer = new Vector3(x, y, 0f);
+        transform.position += moveFarmer * (speed * Time.smoothDeltaTime);   
     }
     public void MouseRotation(){
         //Rotating Camera
