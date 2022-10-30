@@ -1,0 +1,31 @@
+Changes to potatoProjectiles:
+	10/28: put capsule colliders on projectiles.
+	
+	10/28: created tag "Projectile" so enemies could register hits based on the tag.
+
+	IDEA FOR CHANGE(10/28):
+	In the future we could make an armor piercing upgrade that allows the potatos to collide with multiple enemies, upgrades could just increase the counter.
+
+
+Changes to carrots:
+	10/28: created tag "Enemy" to work with ProjectileScript.
+
+	10/28: Removed many now irrelevant comments and a couple lines of irrelevant commented out code in CarrotBehavior.
+
+	10/29: added application of damage to potato crop when carrot collides with potato, damage is applied once per second while a carrot is touching a crop.
+
+	10/29: added fixed update for updating the damage to potatoCrops, should be more stable than update.
+
+	CARROT BUG NOTICED(10/28):
+	When all of the carrots stack on top of eachother on a potato, it only takes one projectile to kill all of them since their colliders line up perfectly.
+	We could write this off as a design choice and make it easier for players to defend their farm, or we can fix it (i think we should fix it, otherwise the
+	standard cannon could be quite strong and there would be less stress to obtain upgrades).
+
+	Worthwhile note(10/29):
+	I tried using a polygon collider on the carrot enemies and it seemed to cause a serious performance hit. We may want to avoid them when we can.
+
+Changes to potato crops:
+
+	10/29: added code to search for the potato manager in the start method (also added start method)
+	
+	

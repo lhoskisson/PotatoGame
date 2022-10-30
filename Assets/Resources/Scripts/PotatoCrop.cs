@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PotatoCrop : MonoBehaviour
 {
-	public int health;
+	public int health = 50;
 	
 	public GameObject potatoManager;
-	
-	public void applyDamage(int damage)
+
+    void Start()
+    {
+        potatoManager = GameObject.Find("Potato Manager");
+    }
+
+    public void applyDamage(int damage)
 	{
 		health -= damage;
 	}
