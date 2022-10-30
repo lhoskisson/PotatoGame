@@ -14,20 +14,18 @@ public class CarrotBehavior : MonoBehaviour
     // with the current time delay, with 10 carrots on a potato, it takes about 2 seconds to 
     // destroy a potato crop.
     public float timeDelay = 1.0f; 
-
+    
     public GameObject targetPotato;
     public GameObject carrotPrefab;
     public GameObject potatoManager;
 
     public bool hasTouchedPotato;
 
-    
-    
     // Start is called before the first frame update
     void Start()
     {
         carrotPrefab = Resources.Load<GameObject>("Prefabs/Carrot");
-		potatoManager = GameObject.Find("Potato Manager");
+		    potatoManager = GameObject.Find("Potato Manager");
     }
 
     // Update is called once per frame
@@ -41,11 +39,12 @@ public class CarrotBehavior : MonoBehaviour
         if (hasTouchedPotato == true)
             doDamage(carrotDamage);
     }
+
     private void moveToPotato()
     {
 		if(targetPotato == null)
 		{
-            // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
+      // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
 			targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
 			// setting hasTouchedPotato to false while carrots search for another potato
 			hasTouchedPotato = false;
