@@ -13,13 +13,16 @@ public class PotatoCrop : MonoBehaviour
 	}
 	
 	//the current growth state of the potato crop
-	private GrowthState growthState = Seed;
+	private GrowthState growthState = GrowthState.Seed;
 	
 	//the base amount of yeild (potatoes) that the crop will give the player when harvested
 	private int baseYeild = 0;
 	
+	//the default health for the potato crop
+	public const int DEFAULT_HEALTH = 50;
+	
 	//the amount of health the crop has
-	public int health = 50;
+	public int health = DEFAULT_HEALTH;
 	
 	//the PotatoManger which should hold a reference to this PotatoCrop
 	public GameObject potatoManager;
@@ -28,6 +31,8 @@ public class PotatoCrop : MonoBehaviour
     {
 		if(potatoManager == null)
 			potatoManager = GameObject.FindWithTag("Potato Manager");
+		health = DEFAULT_HEALTH;
+		ChangeGrowthState(GrowthState.Seed);
     }
 	
 	/*
@@ -39,17 +44,18 @@ public class PotatoCrop : MonoBehaviour
 		growthState = g;
 		switch(growthState)
 		{
-			case Seed:
+			case GrowthState.Seed:
 				baseYeild = 0;
 				break;
-			case Sprout:
+			case GrowthState.Sprout:
 				baseYeild = 2;
 				break;
-			case Half:
+			case GrowthState.Half:
 				baseYeild = 5;
 				break;
-			case Full:
+			case GrowthState.Full:
 				baseYeild = 10;
+				break;
 		}
 	}
 	
