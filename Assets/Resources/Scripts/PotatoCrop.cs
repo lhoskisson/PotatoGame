@@ -18,6 +18,16 @@ public class PotatoCrop : MonoBehaviour
 	//the base amount of yeild (potatoes) that the crop will give the player when harvested
 	private int baseYeild = 0;
 	
+	//the time in seconds that this potato crop has existed
+	private float lifetime = 0;
+	
+	//times when the potato crop automatically changes growth state.
+	private float sproutTime = 30;
+	
+	private float halfTime = 60;
+	
+	private float fullTime = 90;
+	
 	//the default health for the potato crop
 	public const int DEFAULT_HEALTH = 50;
 	
@@ -34,6 +44,13 @@ public class PotatoCrop : MonoBehaviour
 		health = DEFAULT_HEALTH;
 		ChangeGrowthState(GrowthState.Seed);
     }
+	
+	public void setTransitionTimes(float s, float h, float f)
+	{
+		sproutTime = s;
+		halfTime = h;
+		fullTime = f;
+	}	
 	
 	/*
 		Changes the state of the potatoCrop to the given state, and performs any
@@ -89,5 +106,13 @@ public class PotatoCrop : MonoBehaviour
 		{
 			potatoManager.GetComponent<PotatoManager>().RemovePotato(gameObject);
 		}
+		
+		lifetime += Time.deltaTime;
+		if(lifetime > sproutTime && growthState == GrowthState.Seed)
+			ChangeGrowthState(GrowthState.Sprout);
+		if(lifetime > halfTime && growthState == GrowthState.Sprout)
+			ChangeGrowthState(GrowthState.Half);
+		if(lifetime > fullTime && growthState == GrowthState.Half)
+			ChangeGrowthState(GrowthState.Full);
 	}
 }
