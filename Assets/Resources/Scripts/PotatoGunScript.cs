@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PotatoGunScript : MonoBehaviour
 {
-	public GameObject farmer;
+	public Text ammo = null;
+    public GameObject farmer;
 	
     //Projectile to shoot
     public GameObject proj;
+
     //Tip of the gun to fire from
     public GameObject gunTip;
 
@@ -15,10 +18,13 @@ public class PotatoGunScript : MonoBehaviour
     public float cooldown = 0.2f;
     public float timeCounter = 0f;
 
+    //Round count
+    public int ammoCount;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       ammoCount = 100;
     }
 
     // Update is called once per frame
@@ -34,9 +40,19 @@ public class PotatoGunScript : MonoBehaviour
         mouse.z = 0f;
         transform.up = mouse - transform.position;
 
+        GameObject projectile = null;
+
         //Firing Projectile
-        if((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
-            GameObject projectile = Instantiate(proj);
+        if((Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
+
+            if (ammoCount > 0){
+                projectile = Instantiate(proj);
+                ammoCount--;
+                ammo.text = "Ammo Count: " + ammoCount;
+            } else {
+                ammo.text = "Out of Ammo!!";
+            }
+            
 
             //Note! Points to the gun's right
             projectile.transform.position = gunTip.transform.position;

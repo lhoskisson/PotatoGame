@@ -61,9 +61,9 @@ public class PotatoManager : MonoBehaviour
 		PotatoCrop cropScript = p.GetComponent<PotatoCrop>();
 		float percentHealth = ((float) cropScript.health) / ((float) PotatoCrop.DEFAULT_HEALTH);
 		float luck = Random.Range(harvestLuckMin, harvestLuckMax);
-		int yeild = (int) (cropScript.GetBaseYeild()*(percentHealth+bonus+luck));
+		int yield = (int) (cropScript.GetBaseYield()*(percentHealth+bonus+luck));
 		if(RemovePotato(p))
-			return yeild;
+			return yield;
 		return 0;
 	}
 	

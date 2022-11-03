@@ -9,7 +9,7 @@ public class FarmerMovement : MonoBehaviour
 
     void Update(){
         Movement();
-		    MouseRotation();
+		MouseRotation();
 
     }
     public void Movement(){
