@@ -90,4 +90,14 @@ public class PotatoCrop : MonoBehaviour
 			potatoManager.GetComponent<PotatoManager>().RemovePotato(gameObject);
 		}
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "BroccoliProjectile(Clone)")
+        {
+			// hardcoding broccoli projectile damage
+			applyDamage(BroccoliProjectile.broccoliDamage);
+			Destroy(collision.gameObject);
+        }
+    }
 }
