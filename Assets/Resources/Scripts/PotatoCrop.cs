@@ -46,15 +46,19 @@ public class PotatoCrop : MonoBehaviour
 		{
 			case GrowthState.Seed:
 				baseYeild = 0;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Seed");
 				break;
 			case GrowthState.Sprout:
 				baseYeild = 2;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Sprout");
 				break;
 			case GrowthState.Half:
 				baseYeild = 5;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Half");
 				break;
 			case GrowthState.Full:
 				baseYeild = 10;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Full");
 				break;
 		}
 	}
