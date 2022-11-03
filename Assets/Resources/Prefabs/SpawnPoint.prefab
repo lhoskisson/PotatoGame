@@ -94,9 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4586157394968624369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f2ae35c49110c4a89505a31d965078, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e09e3784e72edc49b3440edb9d4bc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   carrotPrefab: {fileID: 0}
   broccoliPrefab: {fileID: 0}
+  EnemyMan: {fileID: 0}
   spHealth: 1000
+  timeDelay: 5
