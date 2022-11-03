@@ -6,7 +6,13 @@ public class PotatoManager : MonoBehaviour
 {
 	public GameObject potato_crop;
 	private List<GameObject> spawned_potatoes;
-    // Start is called before the first frame update
+	
+	//the smallest modifier that could be applied to the crop yeild from luck
+	public float harvestLuckMin = -0.1f;
+	
+	//the largest modifier that could be applied to the crop yeild from luck
+	public float harvestLuckMax = 0.2f;
+
     void Start()
     {
 		spawned_potatoes = new List<GameObject>();
@@ -39,7 +45,38 @@ public class PotatoManager : MonoBehaviour
 		return closest_potato;
 	}
 	
-	public void RemovePotato(GameObject p)
+	/*
+		Harvests the given Potato Crop game object. Calculates and returns the amount of potatoes yeilded,
+		and destroys the potato. The yeild is determined by a base yeild (distinguished by the crop's
+		growth stage), scaled by the crops health percentage, luck, and a given bonus.
+		
+		p: A GameObject referencing the potato crop to be harvested.
+		bonus: A percent increase of the base yeild. Added with the other scale values to modify the base yeild.
+		Since this is used to scale, it should generally be between 0 and 1.
+		
+		Returns an integer value of potatoes harvested.
+	*/
+	public int HarvestPotato(GameObject p, float bonus=0f)
+	{
+		PotatoCrop cropScript = p.GetComponent<PotatoCrop>();
+		float percentHealth = ((float) cropScript.health) / ((float) PotatoCrop.DEFAULT_HEALTH);
+		float luck = Random.Range(harvestLuckMin, harvestLuckMax);
+		int yeild = (int) (cropScript.GetBaseYeild()*(percentHealth+bonus+luck));
+		if(RemovePotato(p))
+			return yeild;
+		return 0;
+	}
+	
+	/*
+		Searches the list of spawned potatoes, if the given potato crop GameObject is found,
+		it is removed from the list and the GameObject is Destroyed.
+		
+		p: The GameObject referencing the potato crop to be removed.
+		
+		Returns true if the given GameObject was in the list, removed, and destroyed.
+		Otherwise returns false. If false, check if there are other PotatoMangers in the scene.
+	*/
+	public bool RemovePotato(GameObject p)
 	{
 		for(int i=0; i<spawned_potatoes.Count; i++)
 		{
@@ -47,9 +84,20 @@ public class PotatoManager : MonoBehaviour
 			{
 				spawned_potatoes.RemoveAt(i);
 				Destroy(p);
+				return true;
 			}
 		}
+		return false;
 	}
+	
+	/*
+		Spawns a Potato_Crop prefab at the given location.
+	*/
+	public void SpawnPotato(Vector3 location)
+	{
+		spawned_potatoes.Add(Instantiate(potato_crop, location, Quaternion.identity) as GameObject);
+	}
+	
 	/*
 		Spawns the Potato_Crop prefabs based on the given parameters.The parameters describe an area 
 		in which the potatoes are placed, as well as the density and distribution of potatoes in the area.
@@ -110,7 +158,7 @@ public class PotatoManager : MonoBehaviour
 					{
 						Vector3 spawn_location = 
 						new Vector3(top_left.x+(i*increment)+center_adjust, top_left.y-(j*increment)-center_adjust, top_left.z);
-						spawned_potatoes.Add(Instantiate(potato_crop, spawn_location, Quaternion.identity) as GameObject);
+						SpawnPotato(spawn_location);
 					}
 				}
 			}

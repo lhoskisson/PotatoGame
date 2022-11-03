@@ -72,7 +72,7 @@ public class CarrotBehavior : MonoBehaviour
         if (time >= timeDelay)
         {
             time = 0f;
-            targetPotato.GetComponent<PotatoCrop>().applyDamage(damage);
+            targetPotato.GetComponent<PotatoCrop>().ApplyDamage(damage);
         }
             
 

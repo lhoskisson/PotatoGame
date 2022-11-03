@@ -4,16 +4,71 @@ using UnityEngine;
 
 public class PotatoCrop : MonoBehaviour
 {
-	public int health = 50;
+	public enum GrowthState
+	{
+		Seed,
+		Sprout,
+		Half,
+		Full
+	}
 	
+	//the current growth state of the potato crop
+	private GrowthState growthState = GrowthState.Seed;
+	
+	//the base amount of yeild (potatoes) that the crop will give the player when harvested
+	private int baseYeild = 0;
+	
+	//the default health for the potato crop
+	public const int DEFAULT_HEALTH = 50;
+	
+	//the amount of health the crop has
+	public int health = DEFAULT_HEALTH;
+	
+	//the PotatoManger which should hold a reference to this PotatoCrop
 	public GameObject potatoManager;
 
-    void Start()
+    public void Start()
     {
-        potatoManager = GameObject.Find("Potato Manager");
+		if(potatoManager == null)
+			potatoManager = GameObject.FindWithTag("Potato Manager");
+		health = DEFAULT_HEALTH;
+		ChangeGrowthState(GrowthState.Seed);
     }
+	
+	/*
+		Changes the state of the potatoCrop to the given state, and performs any
+		associated routines with that change in state.
+	*/
+	public void ChangeGrowthState(GrowthState g)
+	{
+		growthState = g;
+		switch(growthState)
+		{
+			case GrowthState.Seed:
+				baseYeild = 0;
+				break;
+			case GrowthState.Sprout:
+				baseYeild = 2;
+				break;
+			case GrowthState.Half:
+				baseYeild = 5;
+				break;
+			case GrowthState.Full:
+				baseYeild = 10;
+				break;
+		}
+	}
+	
+	/*
+		Returns the baseYeild of the crop.
+		Used by the PotatoManager to determine total yeild when harvested by the player.
+	*/
+	public int GetBaseYeild()
+	{
+		return baseYeild;
+	}
 
-    public void applyDamage(int damage)
+    public void ApplyDamage(int damage)
 	{
 		health -= damage;
 	}
@@ -21,6 +76,7 @@ public class PotatoCrop : MonoBehaviour
 	
 	public void OnDestroy()
 	{
+		//play sound, animation, and/or other events
 	}
 	
 	public void Update()
