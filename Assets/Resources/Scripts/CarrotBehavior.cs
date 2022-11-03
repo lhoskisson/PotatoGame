@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CarrotBehavior : MonoBehaviour
 {
-    public static int carrotCount;
-    public int carrotHealth = 100;
+    // public static int carrotCount;
+    public int carrotHealth = 25;
     public int carrotDamage = 1;
 
     public float carrotSpeed = 1f;
@@ -16,7 +16,7 @@ public class CarrotBehavior : MonoBehaviour
     public float timeDelay = 1.0f; 
     
     public GameObject targetPotato;
-    public GameObject carrotPrefab;
+    //public GameObject carrotPrefab;
     public GameObject potatoManager;
 
     public bool hasTouchedPotato;
@@ -24,8 +24,7 @@ public class CarrotBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        carrotPrefab = Resources.Load<GameObject>("Prefabs/Carrot");
-		    potatoManager = GameObject.Find("Potato Manager");
+		potatoManager = GameObject.Find("Potato Manager");
     }
 
     // Update is called once per frame
@@ -61,7 +60,7 @@ public class CarrotBehavior : MonoBehaviour
     // for their death here
     private void OnDestroy()
     {
-        carrotCount--;
+        EnemyManager.carrotCount--;
     }
 
     // this method runs while carrots are in contact with a potato crop (if statement in update)
