@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FarmerMovement : MonoBehaviour
 {
-    
+
     public float speed = 10f;
 
     void Update(){
