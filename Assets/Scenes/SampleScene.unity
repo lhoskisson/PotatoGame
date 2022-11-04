@@ -1870,6 +1870,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4717993674440247765, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717993674440247765, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
       propertyPath: carrotPrefab
       value: 
       objectReference: {fileID: 0}
