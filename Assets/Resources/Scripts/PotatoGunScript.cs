@@ -87,20 +87,16 @@ public class PotatoGunScript : MonoBehaviour
 
         if (targetCrop == null){
             targetCrop = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
-            Debug.Log("You there?" + targetCrop);
         }
             inRange = false;
-        if (targetCrop != null && (Vector3.Distance(gameObject.transform.position, targetCrop.transform.position) < 5f)){
-            Debug.Log("You Still there?" + targetCrop);
+        if (targetCrop != null && (Vector3.Distance(gameObject.transform.position, targetCrop.transform.position) < 2f)){
             inRange = true;
         }
         
 
         if(inRange == true){
-            Debug.Log("But are you Really?" + targetCrop);
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
-            Debug.Log(ammoCount); 
         }
     }
 }
