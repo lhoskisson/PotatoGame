@@ -1879,6 +1879,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
+--- !u!1 &1808706483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1588028996913403899, guid: 584219cc42df34343aa03c500e876740, type: 3}
+  m_PrefabInstance: {fileID: 6679760169659293339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1808706485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808706483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ba4704b30a90f4294a8690f5324fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carrotPrefab: {fileID: 0}
+  broccoliPrefab: {fileID: 0}
 --- !u!1 &2131891347
 GameObject:
   m_ObjectHideFlags: 0
