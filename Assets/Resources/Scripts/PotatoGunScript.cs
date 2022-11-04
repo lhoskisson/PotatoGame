@@ -26,7 +26,7 @@ public class PotatoGunScript : MonoBehaviour
 
     //Round count
     public int ammoCount;
-    private bool inRange = true;
+    private bool inRange = false;
     
 
     // Start is called before the first frame update
@@ -40,7 +40,10 @@ public class PotatoGunScript : MonoBehaviour
     {
         movement();
         firingProjectiles();
-        cropHarvest();
+
+        if(Input.GetKeyDown("space")){
+            cropHarvest();
+        }
         
         
     }
@@ -86,22 +89,17 @@ public class PotatoGunScript : MonoBehaviour
             targetCrop = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
             Debug.Log("You there?" + targetCrop);
             inRange = false;
-        } else{
-            if (Vector3.Distance(gameObject.transform.position, targetCrop.transform.position) < 1.0f){
-                Debug.Log("You Still there?" + targetCrop);
-                inRange = true;
-            }
+        } else if (targetCrop != null && (Vector3.Distance(gameObject.transform.position, targetCrop.transform.position) < 1.0f)){
+            Debug.Log("You Still there?" + targetCrop);
+            inRange = true;
         }
+        
 
-        if(targetCrop != null && inRange == true){
+        if(inRange == true){
             Debug.Log("But are you Really?" + targetCrop);
-            if(Input.GetKeyDown("space")){
-                Debug.Log("Is it working?");
-                int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
-                ammoCount += harvested;
-                Debug.Log(ammoCount);
-            }
-            
+            int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
+            ammoCount += harvested;
+            Debug.Log(ammoCount); 
         }
     }
 }
