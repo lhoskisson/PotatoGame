@@ -45,16 +45,7 @@ public class PotatoCrop : MonoBehaviour
 		switch(growthState)
 		{
 			case GrowthState.Seed:
-				baseYield = 0;
-				break;
-			case GrowthState.Sprout:
-				baseYield = 2;
-				break;
-			case GrowthState.Half:
-				baseYield = 5;
-				break;
-			case GrowthState.Full:
-				baseYield = 10;
+
 				break;
 		}
 	}
@@ -86,4 +77,14 @@ public class PotatoCrop : MonoBehaviour
 			potatoManager.GetComponent<PotatoManager>().RemovePotato(gameObject);
 		}
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "BroccoliProjectile(Clone)")
+        {
+			// hardcoding broccoli projectile damage
+			ApplyDamage(BroccoliProjectile.broccoliDamage);
+			Destroy(collision.gameObject);
+        }
+    }
 }

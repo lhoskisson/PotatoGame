@@ -20,13 +20,12 @@ public class PotatoManager : MonoBehaviour
     }
 	
 	/*
-		Searches the list of spawned potatoes and returns the one closest to the given location
+		Searches the list of spawned potato crops and returns the one closest to the given location
 	*/
 	public GameObject GetClosestPotato(Vector3 location)
 	{
 		if(spawned_potatoes.Count == 0) return null;
 
-		
 		GameObject closest_potato = null;
 		float closest_distance = float.MaxValue;
 		foreach(GameObject potato in spawned_potatoes)
@@ -43,6 +42,61 @@ public class PotatoManager : MonoBehaviour
 			}
 		}
 		return closest_potato;
+	}
+	
+	/*
+		Sorts the list of spawned potato crops and returns an array of the closest to the given location.
+		
+		location: A Vector3 containing the reference location (location of enemy for example).
+		amount: Integer value of the amount of potatoes to be returned.
+	*/	
+	public GameObject[] GetXClosestPotatoes(Vector3 location, int amount)
+	{
+		if(amount <= 0) return null;
+		if(amount == 1)
+		{
+			GameObject[] p = new GameObject[1];
+			p[0] = GetClosestPotato(location);
+			return p;
+		}
+		
+		if(amount > spawned_potatoes.Count)
+			amount = spawned_potatoes.Count;
+		
+		//sort each potato crop based on its closeness to the given location
+		List<GameObject> sortedPotatoes = new List<GameObject>(spawned_potatoes);
+		sortedPotatoes.Sort(new PotatoDistanceComparer(location));
+		
+		//create and return array of <amount> closest potato crops.
+		GameObject[] potatoes = new GameObject[amount];
+		for(int i=0; i<amount; i++)
+		{
+			potatoes[i] = sortedPotatoes[i];
+		}
+		return potatoes;
+	}
+	
+	/*
+		Compare class used to compare potato crops based on given reference location.
+		Used in GetXClosestPotatoes to sort potato crops.
+	*/
+	private class PotatoDistanceComparer : IComparer<GameObject>
+	{
+		private Vector3 referenceLocation;
+		
+		public PotatoDistanceComparer(Vector3 location)
+		{
+			referenceLocation = location;
+		}
+		
+		public int Compare(GameObject x, GameObject y)
+		{
+			float d1 = Vector3.Distance(x.transform.position, referenceLocation);
+			float d2 = Vector3.Distance(x.transform.position, referenceLocation);
+			if(d1 > d2) return 1;
+			if(d1 < d2) return -1;
+			return 0;
+		}
 	}
 	
 	/*
