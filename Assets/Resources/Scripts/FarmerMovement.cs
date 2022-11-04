@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FarmerMovement : MonoBehaviour
 {
-    
+
     public float speed = 10f;
 
     void Update(){
         Movement();
-		    MouseRotation();
+		MouseRotation();
 
     }
     public void Movement(){
