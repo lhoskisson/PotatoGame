@@ -179,6 +179,14 @@ PrefabInstance:
       value: PotatoGun
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: ammo
+      value: 
+      objectReference: {fileID: 1536690103}
+    - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: crop
+      value: 
+      objectReference: {fileID: 2964378667600996189, guid: 4ed734e91a3e7cd41bf9ae376d4c463c, type: 3}
+    - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: proj
       value: 
       objectReference: {fileID: 9181924630792035281, guid: 207b5a81cdcc5774682f94e45864b85b, type: 3}
@@ -190,8 +198,47 @@ PrefabInstance:
       propertyPath: x_offset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: targetCrop
+      value: 
+      objectReference: {fileID: 2964378667600996189, guid: 4ed734e91a3e7cd41bf9ae376d4c463c, type: 3}
+    - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: potatoManager
+      value: 
+      objectReference: {fileID: 507589353}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+--- !u!1 &360897860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 130575318378528085, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+  m_PrefabInstance: {fileID: 170685385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &360897864
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360897860}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &465192262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1397,6 +1444,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &507589353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
+  m_PrefabInstance: {fileID: 3625492930576988400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,17 +1662,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!1 &1473906786 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1588028996913403899, guid: 584219cc42df34343aa03c500e876740, type: 3}
-  m_PrefabInstance: {fileID: 6679760169659293339}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1473906788
-MonoBehaviour:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+
+  m_GameObject: {fileID: 1448255892}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!1001 &1513507106
+
   m_GameObject: {fileID: 1473906786}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1630,6 +1689,7 @@ MonoBehaviour:
   carrotPrefab: {fileID: 0}
   broccoliPrefab: {fileID: 0}
 --- !u!1001 &1820401423
+
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1685,7 +1745,7 @@ PrefabInstance:
       value: SpawnPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
+
 --- !u!1001 &3625492930576988400
 PrefabInstance:
   m_ObjectHideFlags: 0

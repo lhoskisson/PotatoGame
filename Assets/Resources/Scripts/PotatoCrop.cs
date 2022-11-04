@@ -16,7 +16,7 @@ public class PotatoCrop : MonoBehaviour
 	private GrowthState growthState = GrowthState.Seed;
 	
 	//the base amount of yeild (potatoes) that the crop will give the player when harvested
-	private int baseYeild = 0;
+	private int baseYield = 0;
 	
 	//the default health for the potato crop
 	public const int DEFAULT_HEALTH = 50;
@@ -45,20 +45,7 @@ public class PotatoCrop : MonoBehaviour
 		switch(growthState)
 		{
 			case GrowthState.Seed:
-				baseYeild = 0;
-				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Seed");
-				break;
-			case GrowthState.Sprout:
-				baseYeild = 2;
-				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Sprout");
-				break;
-			case GrowthState.Half:
-				baseYeild = 5;
-				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Half");
-				break;
-			case GrowthState.Full:
-				baseYeild = 10;
-				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Full");
+
 				break;
 		}
 	}
@@ -67,9 +54,9 @@ public class PotatoCrop : MonoBehaviour
 		Returns the baseYeild of the crop.
 		Used by the PotatoManager to determine total yeild when harvested by the player.
 	*/
-	public int GetBaseYeild()
+	public int GetBaseYield()
 	{
-		return baseYeild;
+		return baseYield;
 	}
 
     public void ApplyDamage(int damage)
