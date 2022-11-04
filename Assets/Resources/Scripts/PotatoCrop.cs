@@ -18,6 +18,16 @@ public class PotatoCrop : MonoBehaviour
 	//the base amount of yeild (potatoes) that the crop will give the player when harvested
 	private int baseYield = 0;
 	
+	//the time in seconds that this potato crop has existed
+	private float lifetime = 0;
+
+	//times when the potato crop automatically changes growth state.
+	private float sproutTime = 30;
+
+	private float halfTime = 60;
+
+	private float fullTime = 90;
+	
 	//the default health for the potato crop
 	public const int DEFAULT_HEALTH = 50;
 	
@@ -35,6 +45,13 @@ public class PotatoCrop : MonoBehaviour
 		ChangeGrowthState(GrowthState.Seed);
     }
 	
+	public void setTransitionTimes(float s, float h, float f)
+	{
+		sproutTime = s;
+		halfTime = h;
+		fullTime = f;
+	}	
+	
 	/*
 		Changes the state of the potatoCrop to the given state, and performs any
 		associated routines with that change in state.
@@ -45,13 +62,26 @@ public class PotatoCrop : MonoBehaviour
 		switch(growthState)
 		{
 			case GrowthState.Seed:
-
+				baseYield = 0;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Seed");
+				break;
+			case GrowthState.Sprout:
+				baseYield = 2;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Sprout");
+				break;
+			case GrowthState.Half:
+				baseYield = 5;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Half");
+				break;
+			case GrowthState.Full:
+				baseYield = 10;
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/Farmland_Full");
 				break;
 		}
 	}
 	
 	/*
-		Returns the baseYeild of the crop.
+		Returns the baseYield of the crop.
 		Used by the PotatoManager to determine total yeild when harvested by the player.
 	*/
 	public int GetBaseYield()
@@ -76,6 +106,14 @@ public class PotatoCrop : MonoBehaviour
 		{
 			potatoManager.GetComponent<PotatoManager>().RemovePotato(gameObject);
 		}
+		
+		lifetime += Time.deltaTime;
+		if(lifetime > sproutTime && growthState == GrowthState.Seed)
+			ChangeGrowthState(GrowthState.Sprout);
+		if(lifetime > halfTime && growthState == GrowthState.Sprout)
+			ChangeGrowthState(GrowthState.Half);
+		if(lifetime > fullTime && growthState == GrowthState.Half)
+			ChangeGrowthState(GrowthState.Full);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
