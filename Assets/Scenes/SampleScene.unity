@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: potatoManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1933175691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c887862585d984458d33982e0d270b2, type: 3}
 --- !u!1 &360897860 stripped
@@ -1954,6 +1954,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotPrefab: {fileID: 0}
   broccoliPrefab: {fileID: 0}
+--- !u!1 &1933175691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
+  m_PrefabInstance: {fileID: 393439392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2131891347
 GameObject:
   m_ObjectHideFlags: 0
