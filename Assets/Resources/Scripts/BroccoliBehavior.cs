@@ -29,7 +29,7 @@ public class BroccoliBehavior : MonoBehaviour
     void Update()
     {
         // if statement moves broccoli towards a potato until one is in range, then attacks if one is.
-        if (isInRange == true)
+        if (isInRange == true && targetPotato != null)
             throwBroccoli();
         else
             moveBroccoli();

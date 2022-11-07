@@ -6,7 +6,7 @@ using UnityEngine;
 public class BroccoliProjectile : MonoBehaviour
 {
     public float lifeSpan = 3.0f;
-    public static int broccoliDamage = 10;
+    public static int broccoliDamage = 5;
     public float projectileSpeed = 5f;
     public float timeCounter = 0f;
 

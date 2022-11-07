@@ -68,13 +68,11 @@ public class CarrotBehavior : MonoBehaviour
     private void doDamage(int damage)
     {
         time += Time.deltaTime;
-        if (time >= timeDelay)
+        if (time >= timeDelay && targetPotato != null)
         {
             time = 0f;
             targetPotato.GetComponent<PotatoCrop>().ApplyDamage(damage);
         }
-            
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
