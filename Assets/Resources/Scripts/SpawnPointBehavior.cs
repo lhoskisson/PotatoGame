@@ -6,16 +6,16 @@ public class SpawnPointBehavior : MonoBehaviour
 {
     public GameObject carrotPrefab;
     public GameObject broccoliPrefab;
-    public GameObject EnemyMan;
+    public GameObject enemyMan;
+    public GameObject spawnPointManager;
 
-    public int spHealth = 1000;
-    private float time = 0.0f;
-    public float timeDelay = 5.0f;
+    public int spHealth = 500;
 
     // Start is called before the first frame update
     void Start()
     {
-        EnemyMan = GameObject.Find("EnemyManager");
+        enemyMan = GameObject.Find("EnemyManager");
+        spawnPointManager = GameObject.Find("SpawnPointManager");
         carrotPrefab = Resources.Load<GameObject>("Prefabs/Carrot");
         broccoliPrefab = Resources.Load<GameObject>("Prefabs/Broccoli");
     }
@@ -27,47 +27,47 @@ public class SpawnPointBehavior : MonoBehaviour
 
         if(spHealth <= 0)
         {
-            Debug.Log("spawning disabled?");
-            spawnDelay();
+            initiateDisable();
         }
     }
 
     public void checkEnemyCount()
     {
-        if(EnemyManager.carrotCount < 20)
+        if(EnemyManager.carrotCount < 10)
         {
-            EnemyMan.GetComponent<EnemyManager>().spawnCarrot(gameObject.transform.position);
+            enemyMan.GetComponent<EnemyManager>().spawnCarrot(gameObject.transform.position);
         }
-        if(EnemyManager.broccoliCount < 10)
+        if(EnemyManager.broccoliCount < 5)
         {
-            EnemyMan.GetComponent<EnemyManager>().spawnBroccoli(gameObject.transform.position);
+            enemyMan.GetComponent<EnemyManager>().spawnBroccoli(gameObject.transform.position);
+        }
+        if(EnemyManager.tomatoCount < 3)
+        {
+            enemyMan.GetComponent<EnemyManager>().spawnTomato(gameObject.transform.position);
         }
     }
 
-    private void spawnDelay()
+    private void initiateDisable()
     {
-        // IMPORTANT!!
-        // this is cool and all, but when the spawn point is set to inactive it's update is no longer called.
-        // this means it needs to be reactivated somewhere else which also means that somewhere else will need to 
-        // be counting the timer for this to work. SpawnPointManager?
-
-        // gameObject.SetActive(false);
-        time += Time.deltaTime;
-        if (time >= timeDelay)
-        {
-            time = 0f;
-            Debug.Log("setting active");
-            // gameObject.SetActive(true);
-        }
+        // setting loadedSpawnPoint in spawnPointManager to this spawn point
+        spawnPointManager.GetComponent<SpawnPointManager>().setSpawnPoint(gameObject);
+        // starting the disableSpawner method in the SpawnPointManager
+        spawnPointManager.GetComponent<SpawnPointManager>().disableSpawner(gameObject);
     }
     
+    // method that will be used to refill the spawners health in the SpawnPointManager
+    public void refillHealth()
+    {
+        spHealth = 1000;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
             Destroy(collision.gameObject);
-            // make this less, this high for testing purposes
-            spHealth -= 100;
+            // make this less, this high for testing purposes, should be 25 to keep projectile damage consistent
+            spHealth -= 25;
         }
     }
 }

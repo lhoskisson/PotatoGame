@@ -32,7 +32,7 @@ public class PotatoGunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       ammoCount = 100;
+       ammoCount = 250;
     }
 
     // Update is called once per frame
