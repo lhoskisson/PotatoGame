@@ -122,6 +122,20 @@ public class PotatoManager : MonoBehaviour
 	}
 	
 	/*
+		Harvests all potato crops that this Potato Manager handles. Returns the yield of all these crops.
+	*/
+	public int HarvestAllPotatoes(float bonus=0f)
+	{
+		int total = 0;
+		for(int i=0; i<spawned_potatoes.Count; i++)
+		{
+			total += HarvestPotato(spawned_potatoes[i], bonus);
+			i=0; //reset to zero since the size of the list is changing each iteration.
+		}
+		return total;
+	}
+	
+	/*
 		Searches the list of spawned potatoes, if the given potato crop GameObject is found,
 		it is removed from the list and the GameObject is Destroyed.
 		

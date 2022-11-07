@@ -33,6 +33,8 @@ public class PotatoGunScript : MonoBehaviour
     void Start()
     {
        ammoCount = 250;
+	   if(potatoManager == null)
+		   GameObject.FindWithTag("Potato Manager");
     }
 
     // Update is called once per frame
