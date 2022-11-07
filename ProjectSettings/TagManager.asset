@@ -7,7 +7,6 @@ TagManager:
   - Crop
   - Projectile
   - Enemy
-  - Potato Manager
   layers:
   - Default
   - TransparentFX
