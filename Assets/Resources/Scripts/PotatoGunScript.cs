@@ -64,7 +64,7 @@ public class PotatoGunScript : MonoBehaviour
 
         timeCounter = timeCounter + Time.smoothDeltaTime;
 
-        
+        ammo.text = "Ammo Count: " + ammoCount;
         //Firing Projectile
         if((Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
             
@@ -72,7 +72,7 @@ public class PotatoGunScript : MonoBehaviour
 
                 GameObject projectile = Instantiate(proj);
                 ammoCount--;
-                ammo.text = "Ammo Count: " + ammoCount;
+                
 
                 //Note! Points to the gun's right
                 projectile.transform.position = gunTip.transform.position;
