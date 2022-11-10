@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -141,6 +141,5 @@ MonoBehaviour:
   carrotSpeed: 1
   timeDelay: 1
   targetPotato: {fileID: 0}
-  carrotPrefab: {fileID: 0}
   potatoManager: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
   hasTouchedPotato: 0
