@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FarmerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public float speed = 10f;
     
     
