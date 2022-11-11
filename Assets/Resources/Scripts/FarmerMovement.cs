@@ -5,13 +5,18 @@ using UnityEngine;
 public class FarmerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    Vector3 moveFarmer;
     public float speed = 10f;
+    private bool isKnocked = false;
     
     
     
     void Update(){
-        Movement();
-		MouseRotation();
+
+        if(!isKnocked){
+            Movement();
+            MouseRotation();
+        }
 
 
     }
@@ -21,7 +26,7 @@ public class FarmerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        Vector3 moveFarmer = new Vector3(x, y, 0f);
+        moveFarmer = new Vector3(x, y, 0f);
         transform.position += moveFarmer * (speed * Time.smoothDeltaTime);   
     }
     public void MouseRotation(){
@@ -33,19 +38,16 @@ public class FarmerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
 
         float force = 2f;
+        rb = GetComponent<Rigidbody2D>();
+        Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
 
-        if (collision.gameObject.CompareTag("Enemy")){
-
-            rb = GetComponent<Rigidbody2D>();
-            Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
+        if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
             if (enemy != null){
-                enemy.isKinematic = false;
+                isKnocked = true;
                 Vector3 distance = transform.position - enemy.transform.position;
                 distance = distance.normalized * force;
                 rb.AddForce(distance, ForceMode2D.Impulse);
                 StartCoroutine(timer(rb));
-                enemy.isKinematic = true;
-                
             }
         }
     }
@@ -54,6 +56,6 @@ public class FarmerMovement : MonoBehaviour
         float pushTimer = .5f;
         yield return new WaitForSeconds(pushTimer);
         farmer.velocity = Vector3.zero;
+        isKnocked = false;  
     }
-   
 }

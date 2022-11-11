@@ -184,21 +184,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 130575316790277911, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 130575316790277911, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 130575316790277911, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 130575318378528080, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528080, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528080, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.09
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528080, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528080, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1932,9 +1944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11e7c70037a554418761c4ef2319c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1448255896}
   speed: 10
-  pushTimer: 1
 --- !u!50 &1448255896
 Rigidbody2D:
   serializedVersion: 4
