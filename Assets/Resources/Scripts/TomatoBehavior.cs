@@ -66,11 +66,17 @@ public class TomatoBehavior : MonoBehaviour
     private void Explode()
     {
         Debug.Log("BOOM");
+        GameObject explosion = Resources.Load<GameObject>("Prefabs/TomatoExplosion");
+        if (explosion != null)
+        {
+            // setting the explosion to the tomato's position
+            explosion.transform.position = gameObject.transform.position;
+            Instantiate(explosion);
+        }
     }
 
     private void OnDestroy()
     {
-        Explode();
         EnemyManager.tomatoCount--;
     }
 
@@ -81,7 +87,12 @@ public class TomatoBehavior : MonoBehaviour
             // tomatos are a higher level enemy and take a good bit of damage to destroy
             tomatoHealth -= 25;
             if(tomatoHealth <= 0)
+            {
+                // originally Explode() call was in OnDestroy, this caused explosions to be spawned after the scene
+                // was ended and the remaining tomatoes were destroyed. 
+                Explode();
                 Destroy(gameObject);
+            }
         }
         if (collision.gameObject.tag == "Crop")
         {

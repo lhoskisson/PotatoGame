@@ -33,6 +33,8 @@ public class PotatoGunScript : MonoBehaviour
     void Start()
     {
        ammoCount = 250;
+	   if(potatoManager == null)
+		   GameObject.FindWithTag("Potato Manager");
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class PotatoGunScript : MonoBehaviour
     public void movement(){
 
         //match farmer position
-		transform.position = farmer.transform.position;
+		//transform.position = farmer.transform.position;
 
         //Rotating Camera
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);

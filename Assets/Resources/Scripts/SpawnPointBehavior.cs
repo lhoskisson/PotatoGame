@@ -66,7 +66,6 @@ public class SpawnPointBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Projectile")
         {
             Destroy(collision.gameObject);
-            // make this less, this high for testing purposes, should be 25 to keep projectile damage consistent
             spHealth -= 25;
         }
     }
