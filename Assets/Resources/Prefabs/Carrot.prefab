@@ -138,9 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotHealth: 100
   carrotDamage: 5
-  carrotSpeed: 1
+  carrotSpeed: 2
   timeDelay: 1
   targetPotato: {fileID: 0}
-  carrotPrefab: {fileID: 0}
   potatoManager: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
   hasTouchedPotato: 0
