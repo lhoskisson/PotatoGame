@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PotatoGunScript : MonoBehaviour
+public class PotatoGun2 : MonoBehaviour
 {
     //UI script to keep count of ammo
 	public Text ammo = null;
