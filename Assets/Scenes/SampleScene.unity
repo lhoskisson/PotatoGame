@@ -1806,6 +1806,7 @@ MonoBehaviour:
   weapons: []
   weaponInventory: {fileID: 681608081}
   currentWeapon: {fileID: 0}
+  weaponIndex: 0
 --- !u!4 &681608083
 Transform:
   m_ObjectHideFlags: 0
@@ -2366,9 +2367,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 955588009}
     - target: {fileID: 7867227422283867013, guid: 431d1a8aa67cdc64faf0b73dc0521124, type: 3}
+      propertyPath: proj
+      value: 
+      objectReference: {fileID: 9181924630792035281, guid: 207b5a81cdcc5774682f94e45864b85b, type: 3}
+    - target: {fileID: 7867227422283867013, guid: 431d1a8aa67cdc64faf0b73dc0521124, type: 3}
       propertyPath: farmer
       value: 
       objectReference: {fileID: 1448255892}
+    - target: {fileID: 7867227422283867013, guid: 431d1a8aa67cdc64faf0b73dc0521124, type: 3}
+      propertyPath: potatoManager
+      value: 
+      objectReference: {fileID: 931341377}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 431d1a8aa67cdc64faf0b73dc0521124, type: 3}
 --- !u!1 &1808706483 stripped

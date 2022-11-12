@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: {fileID: 0}
-  potatoManager: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
-  farmer: {fileID: 5593599791212801964, guid: 49f6c207a9fa4024da4a1ddba65b18a7, type: 3}
-  proj: {fileID: 9181924630792035281, guid: 207b5a81cdcc5774682f94e45864b85b, type: 3}
+  potatoManager: {fileID: 0}
+  farmer: {fileID: 0}
+  proj: {fileID: 0}
   gunTip: {fileID: 38573402}
   cooldown: 0.2
   timeCounter: 0
