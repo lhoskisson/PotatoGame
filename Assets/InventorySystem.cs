@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    private int numWeapons = 0;
+    private int numWeapons;
 
     public  GameObject[] weapons;
     public GameObject weaponInventory;
     public GameObject currentWeapon;
-    private int weaponIndex;
+    public int weaponIndex;
 
     void Start(){
         addWeapons();
@@ -21,7 +21,7 @@ public class InventorySystem : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") > 0f){
             
             if (weaponIndex >= numWeapons - 1){
-                weaponIndex = 0;
+                changeWeaponBackward();
             } else {
                 changeWeaponForward();
             }
@@ -30,7 +30,7 @@ public class InventorySystem : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") < 0f){
             
             if (weaponIndex <= 0){
-                weaponIndex = numWeapons - 1;
+                changeWeaponForward();
             } else {
                 changeWeaponBackward();
             }
