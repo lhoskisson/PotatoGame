@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
 	
 	public GameObject timeText;
 
+	public GameObject gameOverScreen;
+
     void Start()
     {
         timeText = GameObject.Find("TimeText");
@@ -37,7 +39,9 @@ public class Timer : MonoBehaviour
 			GameObject[] potatoManagers = GameObject.FindGameObjectsWithTag("Potato Manager");
 			foreach(GameObject pm in potatoManagers)
 				pm.GetComponent<PotatoManager>().HarvestAllPotatoes();
-			
+
+			//TEMP: game over menu
+			gameOverScreen.SetActive(true);
 			//go to next level
 		}
     }
