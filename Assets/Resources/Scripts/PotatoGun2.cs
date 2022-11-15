@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PotatoGunScript : MonoBehaviour
+public class PotatoGun2 : MonoBehaviour
 {
     //UI script to keep count of ammo
 	public Text ammo = null;
@@ -52,7 +52,7 @@ public class PotatoGunScript : MonoBehaviour
     public void movement(){
 
         //match farmer position
-		//transform.position = farmer.transform.position;
+		transform.position = farmer.transform.position;
 
         //Rotating Camera
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
