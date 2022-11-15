@@ -6,9 +6,9 @@ using UnityEngine;
 public class TomatoExplosion : MonoBehaviour
 {
     // too high? 50 damage one shots any potato crops in the explosion.
-    public static int exlosionDamage = 50;
+    public static int exlosionDamage = 25;
 
-    public float life = 1.0f;
+    public float life = .5f;
     public float time;
 
     // Start is called before the first frame update
