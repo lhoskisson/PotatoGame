@@ -17,8 +17,6 @@ public class FarmerMovement : MonoBehaviour
             Movement();
             MouseRotation();
         }
-
-
     }
     public void Movement(){
 
@@ -37,7 +35,7 @@ public class FarmerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision){
 
-        float force = 2f;
+        float force = 5f;
         rb = GetComponent<Rigidbody2D>();
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
 
