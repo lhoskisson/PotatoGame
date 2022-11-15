@@ -14,7 +14,7 @@ public class ProjectileScript : MonoBehaviour
     public float moveSpeed = 10f;
     
     //Damage
-    public float damage = 1f;
+    public int damage = 1;
 
     //Mode
     public int mode = 0;
@@ -26,28 +26,28 @@ public class ProjectileScript : MonoBehaviour
 
         if(mode == 0) {
             //Default PotatoGun
-            damage = 1f;
+            damage = 25;
             lifeSpan = 5f;
             moveSpeed = 10f;
             gameObject.GetComponent<Animator>().enabled = true;    
         } else if(mode == 1) {
             //MachineGun
 
-            damage = 5f;
+            damage = 15;
             lifeSpan = 7f;
             moveSpeed = 20f;
             curr = spriteArray[1];
         } else if(mode == 2) {
             //Heater
 
-            damage = 10f;
-            lifeSpan = 20f;
-            moveSpeed = 5f;
+            damage = 100;
+            lifeSpan = 10f;
+            moveSpeed = 15f;
             curr = spriteArray[2];
         } else if(mode == 3) {
             //Fry Shotgun
         
-            damage = 0.5f;
+            damage = 4;
             lifeSpan = 0.25f;
             moveSpeed = 10f;
             curr = spriteArray[3];
