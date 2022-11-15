@@ -120,9 +120,13 @@ public class PotatoCrop : MonoBehaviour
     {
         if (collision.gameObject.name == "BroccoliProjectile(Clone)")
         {
-			// hardcoding broccoli projectile damage
 			ApplyDamage(BroccoliProjectile.broccoliDamage);
 			Destroy(collision.gameObject);
         }
+		if(collision.gameObject.name == "TomatoExplosion(Clone)")
+		{
+			ApplyDamage(TomatoExplosion.exlosionDamage);
+			// object destroyed elsewhere
+		}
     }
 }

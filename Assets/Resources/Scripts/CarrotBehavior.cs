@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class CarrotBehavior : MonoBehaviour
 {
-    // public static int carrotCount;
+    
     public int carrotHealth = 25;
     public int carrotDamage = 1;
+    public static int carrotCost = 1;
 
     public float carrotSpeed = 1f;
     private float time = 0.0f;
-    // with the current time delay, with 10 carrots on a potato, it takes about 2 seconds to 
-    // destroy a potato crop.
     public float timeDelay = 1.0f; 
     
     public GameObject targetPotato;
-    //public GameObject carrotPrefab;
     public GameObject potatoManager;
 
     public bool hasTouchedPotato;
