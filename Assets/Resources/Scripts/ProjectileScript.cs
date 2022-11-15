@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
+    public Sprite[] spriteArray = new Sprite[4];
+
     //Projectile Lifespan
     public float lifeSpan = 5f;
     public float timeCounter = 0f;
@@ -14,10 +16,45 @@ public class ProjectileScript : MonoBehaviour
     //Damage
     public float damage = 1f;
 
+    //Mode
+    public int mode = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        Sprite curr = spriteArray[0];
+
+        if(mode == 0) {
+            //Default PotatoGun
+            damage = 1f;
+            lifeSpan = 5f;
+            moveSpeed = 10f;
+            gameObject.GetComponent<Animator>().enabled = true;    
+        } else if(mode == 1) {
+            //MachineGun
+
+            damage = 5f;
+            lifeSpan = 7f;
+            moveSpeed = 20f;
+            curr = spriteArray[1];
+        } else if(mode == 2) {
+            //Heater
+
+            damage = 10f;
+            lifeSpan = 20f;
+            moveSpeed = 5f;
+            curr = spriteArray[2];
+        } else if(mode == 3) {
+            //Fry Shotgun
         
+            damage = 0.5f;
+            lifeSpan = 0.25f;
+            moveSpeed = 10f;
+            curr = spriteArray[3];
+        }
+
+        SpriteRenderer rend = gameObject.GetComponent<SpriteRenderer>();
+        rend.sprite = curr;
     }
 
     // Update is called once per frame
