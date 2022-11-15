@@ -2776,7 +2776,7 @@ PrefabInstance:
       objectReference: {fileID: 450064534}
     - target: {fileID: -3764328106859622417, guid: 22ffd5b6ab6368c4fb98e1b7915fba8e, type: 3}
       propertyPath: levelTime
-      value: 10
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -3764328106859622417, guid: 22ffd5b6ab6368c4fb98e1b7915fba8e, type: 3}
       propertyPath: gameOverScreen
