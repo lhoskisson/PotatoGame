@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class TomatoBehavior : MonoBehaviour
 {
-    public int tomatoHealth = 200;
-    public int tomatoDamage = 2;
+    public int tomatoHealth = 100;
+    public int tomatoDamage = 20;
+    public static int tomatoCost = 5;
+    // public int targetPotatoesIndex; (not currently in use)
 
     public float tomatoSpeed = .5f;
     private float time = 0.0f;
@@ -13,6 +15,7 @@ public class TomatoBehavior : MonoBehaviour
 
     public GameObject targetPotato;
     public GameObject potatoManager;
+    // public GameObject[] targetPotatoes; (not currently in use, see moveToPotato)
 
     public bool hasTouchedPotato;
 
@@ -41,6 +44,14 @@ public class TomatoBehavior : MonoBehaviour
         {
             // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
             targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
+
+            /* code for using targetPotatoes array, does not currently work properly.
+            // setting target potatoes to an array of 3 closest potatos
+            targetPotatoes = potatoManager.GetComponent<PotatoManager>().GetXClosestPotatoes(transform.position, 3);
+            // setting targetPotato to a random potato within the targetPotatoes array
+            targetPotato = targetPotatoes[Random.Range(0, 2)];
+            */
+
             // setting hasTouchedPotato to false while carrots search for another potato
             hasTouchedPotato = false;
         }

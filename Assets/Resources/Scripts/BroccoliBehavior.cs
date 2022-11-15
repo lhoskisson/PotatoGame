@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BroccoliBehavior : MonoBehaviour
 {
-
-    // public static int broccoliCount;
     public int broccoliHealth = 100;
+    public static int broccoliCost = 3;
 
     public float broccoliSpeed = 1f;
     private float time = 0.0f;
