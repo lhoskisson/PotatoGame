@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnPointManager : MonoBehaviour
 {
+    
     private float time = 0.0f;
     public float timeDelay = 5.0f;
     public bool delayActive;
@@ -16,7 +17,7 @@ public class SpawnPointManager : MonoBehaviour
       will need to have a spawnpoint manager placed into the spawnpoint in the inspector rather than 
       using GameObject.Find("SpawnPointManager") in SpawnPointBehavior.
     */
-    public GameObject loadedSpawnPoint;
+    public GameObject loadedSpawnPoint; 
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class SpawnPointManager : MonoBehaviour
             disableSpawner(loadedSpawnPoint);
     }
 
+    
     public void disableSpawner(GameObject spawner)
     {
         if(isFirstRun) // trying to avoid running unnecessary code each frame with this if

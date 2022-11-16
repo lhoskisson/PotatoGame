@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class SpawnPointBehavior : MonoBehaviour
@@ -13,10 +14,22 @@ public class SpawnPointBehavior : MonoBehaviour
     // array size should be at least the size of its budget, since carrots only cost
     // 1 to the budget it's possible to have a wave of only carrots (though extreamely unlikely)
     public GameObject[] waveOne = new GameObject[100];
+    public GameObject[] waveTwo = new GameObject[200];
 
     public int spHealth = 500;
     public int waveOneBudget = 100;
+    public int waveTwoBudget = 200;
     public bool waveOneIsSpawned;
+    public bool waveTwoIsSpawned;
+    public float spawnDelay = 1f; // time between each enemy spawn
+    public float spawnTimer = 0f; // keeps track of spawnDelay
+    public int wavei; // counter for the index of waves
+
+    // varibles dealing with disabling the spawner
+    public bool isDisabled;
+    private float time = 0.0f;
+    public float timeDelay = 10.0f;
+    public bool isFirstRun = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,21 +40,25 @@ public class SpawnPointBehavior : MonoBehaviour
         broccoliPrefab = Resources.Load<GameObject>("Prefabs/Broccoli");
         tomatoPrefab = Resources.Load<GameObject>("Prefabs/Tomato");
         createWave(waveOneBudget, waveOne);
+        createWave(waveTwoBudget, waveTwo);
     }
 
     // Update is called once per frame
     void Update()
     {
         // checkEnemyCount();
-        if (!waveOneIsSpawned)
+        if (!waveOneIsSpawned && !isDisabled)
         {
             spawnWave(waveOne);
-            waveOneIsSpawned = true;
+        }
+        else if(!waveTwoIsSpawned && !isDisabled)
+        {
+            spawnWave(waveTwo);
         }
             
         if(spHealth <= 0)
         {
-            initiateDisable();
+            Disable();
         }
     }
 
@@ -75,14 +92,36 @@ public class SpawnPointBehavior : MonoBehaviour
                 waveBudget -= BroccoliBehavior.broccoliCost;
             else if (wave[i].name == "Tomato")
                 waveBudget -= TomatoBehavior.tomatoCost;
-            Debug.Log("WaveBudget = " + waveBudget);
-            Debug.Log("Wave["+i+"] name = " + wave[i].name);
         }
     }
 
     public void spawnWave(GameObject[] wave)
     {
-        for( int i = 0; i < wave.Length; i++)
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= spawnDelay)
+        {
+            if (wave[wavei].name == "Carrot")
+                enemyMan.GetComponent<EnemyManager>().spawnCarrot(gameObject.transform.position);
+            else if (wave[wavei].name == "Broccoli")
+                enemyMan.GetComponent<EnemyManager>().spawnBroccoli(gameObject.transform.position);
+            else if (wave[wavei].name == "Tomato")
+                enemyMan.GetComponent<EnemyManager>().spawnTomato(gameObject.transform.position);
+            spawnTimer = 0f;
+            wavei++;
+        }
+        if (wave[wavei] == null && !waveOneIsSpawned)
+        {
+            waveOneIsSpawned = true;
+            wavei = 0;
+        }
+        else if (wave[wavei] == null && !waveTwoIsSpawned)
+        {
+            waveTwoIsSpawned = true;
+            wavei = 0;
+        }
+        /* This loop will dump a wave all at once, might be useful for a boss wave. 
+         * some variables will need to be updated to work properly.
+        for (int i = 0; i < wave.Length; i++)
         {
             if (wave[i] == null)
             {
@@ -94,40 +133,43 @@ public class SpawnPointBehavior : MonoBehaviour
                 enemyMan.GetComponent<EnemyManager>().spawnBroccoli(gameObject.transform.position);
             else if (wave[i].name == "Tomato")
                 enemyMan.GetComponent<EnemyManager>().spawnTomato(gameObject.transform.position);
-        }
+        }*/
     }
 
     // pickRandomEnemy returns a random enemy type
     public GameObject pickRandomEnemy()
     {
         GameObject randomEnemy;
-        int enemySelector = Random.Range(1, 4); // Random.Range has an EXCLUSIVE max when using the int overload.
-        Debug.Log("enemySelector = " + enemySelector);
-        switch (enemySelector) 
-        {
-            case 1:
-                randomEnemy = carrotPrefab;
-                break;
-            case 2:
-                randomEnemy = broccoliPrefab;
-                break;
-            case 3:
-                randomEnemy = tomatoPrefab;
-                break;
-            default: // required for the compiler to recognize randomEnemy as assigned.
-                randomEnemy = carrotPrefab;
-                break;
-        }
-        Debug.Log("random enemy = " + randomEnemy.name);
+        int enemySelector = Random.Range(1, 11); // Random.Range has an EXCLUSIVE max when using the int overload.
+        if (enemySelector >= 1 && enemySelector <= 5) // 50% chance of a carrot
+            randomEnemy = carrotPrefab;
+        else if (enemySelector >= 6 && enemySelector <= 8) // 30% chance of a broccoli
+            randomEnemy = broccoliPrefab;
+        else // 20% chance of a tomato
+            randomEnemy = tomatoPrefab;
+
         return randomEnemy;
     }
 
-    private void initiateDisable()
+    private void Disable()
     {
-        // setting loadedSpawnPoint in spawnPointManager to this spawn point
-        spawnPointManager.GetComponent<SpawnPointManager>().setSpawnPoint(gameObject);
-        // starting the disableSpawner method in the SpawnPointManager
-        spawnPointManager.GetComponent<SpawnPointManager>().disableSpawner(gameObject);
+        
+        if (isFirstRun) // trying to avoid running unnecessary code each frame with this if
+        {
+            isDisabled = true;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0f);
+            isFirstRun = false;
+        }
+        time += Time.deltaTime;
+        if (time >= timeDelay)
+        {
+            isDisabled = false;
+            time = 0f;
+            refillHealth();
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            isFirstRun = true;
+        }
+        
     }
     
     // method that will be used to refill the spawners health in the SpawnPointManager
