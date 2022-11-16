@@ -56,8 +56,11 @@ public class PotatoGunScript : MonoBehaviour
         firingProjectiles();
 
         if(Input.GetKeyDown("space")){
-            if(!cropPlant())
-				      cropHarvest();
+		    cropHarvest();
+        }
+        if(Input.GetKeyDown("c"))
+        {
+            cropPlant();
         }
     }
 

@@ -7,11 +7,14 @@ public class GameOver : MonoBehaviour
 {
     public void Restart()
     {
+        Timer.levelTime = Timer.startLevelTime;
         SceneManager.LoadScene("SampleScene");
     }
 
     public void MainMenu()
     {
+        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        Timer.levelTime = Timer.startLevelTime;
         SceneManager.LoadScene("Menu");
     }
 
