@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TomatoBehavior : MonoBehaviour
 {
+
     public int tomatoHealth = 100;
     public int tomatoDamage = 20;
     public static int tomatoCost = 5;
@@ -96,7 +97,7 @@ public class TomatoBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Projectile")
         {
             // tomatos are a higher level enemy and take a good bit of damage to destroy
-            tomatoHealth -= 25;
+            tomatoHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
             if(tomatoHealth <= 0)
             {
                 // originally Explode() call was in OnDestroy, this caused explosions to be spawned after the scene

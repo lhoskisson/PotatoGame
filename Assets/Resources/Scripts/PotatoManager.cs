@@ -7,6 +7,8 @@ public class PotatoManager : MonoBehaviour
 	public GameObject potato_crop;
 	private List<GameObject> spawned_potatoes;
 	
+	public GameObject grid;
+	
 	//the smallest modifier that could be applied to the crop yeild from luck
 	public float harvestLuckMin = -0.1f;
 	
@@ -15,8 +17,10 @@ public class PotatoManager : MonoBehaviour
 
     void Start()
     {
+		if(grid == null)
+			grid = GameObject.Find("Grid");
 		spawned_potatoes = new List<GameObject>();
-        SpawnPotatoes(new Vector3(0,0,1), 5, 100);
+        SpawnPotatoes(new Vector3(0,0,1), 5, 100);		
     }
 	
 	/*
@@ -159,12 +163,15 @@ public class PotatoManager : MonoBehaviour
 	}
 	
 	/*
-		Spawns a Potato_Crop prefab at the given location.
+		Spawns a Potato_Crop prefab at the closest grid center to the given location.	
 	*/
+	//TODO: make a SpawnPotatoSafe method that checks for other potato crops before placing.
 	public void SpawnPotato(Vector3 location)
 	{
-		spawned_potatoes.Add(Instantiate(potato_crop, location, Quaternion.identity) as GameObject);
+		Grid g = grid.GetComponent<Grid>();
+		spawned_potatoes.Add(Instantiate(potato_crop, g.GetCellCenterWorld(g.WorldToCell(location)), Quaternion.identity) as GameObject);
 	}
+	
 	
 	/*
 		Spawns the Potato_Crop prefabs based on the given parameters.The parameters describe an area 

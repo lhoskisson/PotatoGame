@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BroccoliBehavior : MonoBehaviour
 {
+
     public int broccoliHealth = 100;
     public static int broccoliCost = 3;
 
@@ -91,7 +92,7 @@ public class BroccoliBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Projectile")
         {
             // Broccoli are a stronger enemy and should take 3-4 default projectiles to kill.
-            broccoliHealth -= 25;
+            broccoliHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
             if(broccoliHealth <= 0)
                 Destroy(gameObject);
         }

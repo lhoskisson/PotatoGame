@@ -11,6 +11,12 @@ public class PotatoGunScript : MonoBehaviour
     //GameObjects used to harvest potato
     public GameObject potatoManager;
     private GameObject targetCrop;
+	
+	//GameObject containing grid component used for planting crops.
+	public GameObject grid;
+	
+	//ammo cost for planting.
+	public int plantCost = 5;
 
     public GameObject farmer;
 	
@@ -20,9 +26,12 @@ public class PotatoGunScript : MonoBehaviour
     //Tip of the gun to fire from
     public GameObject gunTip;
 
-    //Firerate
+    //Gun Defaults
     public float cooldown = 0.2f;
     public float timeCounter = 0f;
+    public float spray = 0f;
+    public int timesFired = 1;
+    public int mode = 0;
 
     //Round count
     private int ammoCount;
@@ -34,30 +43,108 @@ public class PotatoGunScript : MonoBehaviour
     {
        ammoCount = 250;
 	   if(potatoManager == null)
-		   GameObject.FindWithTag("Potato Manager");
+		   potatoManager = GameObject.FindWithTag("Potato Manager");
+	   if(grid == null)
+		   grid = GameObject.Find("Grid");
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
+        changeMode();
         firingProjectiles();
 
         if(Input.GetKeyDown("space")){
-            cropHarvest();
+            if(!cropPlant())
+				      cropHarvest();
         }
-        
-        
     }
+
+    //Handles Camera rotation
     public void movement(){
-
-        //match farmer position
-		//transform.position = farmer.transform.position;
-
         //Rotating Camera
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0f;
         transform.up = mouse - transform.position;
+    }
+
+    //Changes the mode for the gun
+    //Also changes gunside firing info: times a projectile is fired, 
+    //Firerate, and spray.
+    public void changeMode() {
+        int oldMode = mode;
+
+        //Key 1: Default PotatoGun
+        if(Input.GetKey(KeyCode.Alpha1) && mode != 0) {
+            mode = 0;
+        } else if(Input.GetKey(KeyCode.Alpha2) && mode != 1) {
+            //Key 2:Fries MachineGun
+
+            mode = 1;
+        } else if(Input.GetKey(KeyCode.Alpha3) && mode != 2) {
+            //Key 3: Slow, but powerful
+
+            mode = 2;
+        } else if(Input.GetKey(KeyCode.Alpha4) && mode != 3) {
+            //Key 4: Shotgun
+
+            mode = 3;
+        } else if(Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            //Scroll Up
+            mode++;
+
+            if(mode > 3) {
+                mode = 0;
+            }
+        } else if(Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            //Scroll Down
+            mode--;
+
+            if(mode < 0) {
+                mode = 3;
+            }
+        }
+
+        float modeChanged = (oldMode - mode);
+
+        //If the gun mode changed
+        if(modeChanged == 0) {
+            if(mode == 0) {
+                //Default
+
+                cooldown = 0.2f;
+                spray = 0f;
+                timesFired = 1;
+
+                gunTip.GetComponent<FiringPointScript>().spriteChange(0);
+            } else if(mode == 1) {
+                //MachineGun
+
+                cooldown = 0.05f;
+                spray = 20f;
+                timesFired = 1;
+
+                gunTip.GetComponent<FiringPointScript>().spriteChange(1);
+            } else if(mode == 2) {
+                //Slow, Chunky
+
+                cooldown = 1f;
+                spray = 0f;
+                timesFired = 1;
+
+                gunTip.GetComponent<FiringPointScript>().spriteChange(2);
+
+            } else if(mode == 3) {
+                //Shotgun
+
+                cooldown = 0.5f;
+                spray = 45f;
+                timesFired = 20;
+
+                gunTip.GetComponent<FiringPointScript>().spriteChange(3);
+            }
+        }
     }
 
     public void firingProjectiles(){
@@ -69,14 +156,20 @@ public class PotatoGunScript : MonoBehaviour
         if((Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
             
             if (ammoCount > 0){
-
-                GameObject projectile = Instantiate(proj);
                 ammoCount--;
                 
 
-                //Note! Points to the gun's right
-                projectile.transform.position = gunTip.transform.position;
-                projectile.transform.up = transform.up;
+                for(int i = 0; i < timesFired; i++) {
+                    GameObject projectile = Instantiate(proj);
+
+                    projectile.GetComponent<ProjectileScript>().mode = mode;
+
+                    projectile.transform.position = gunTip.transform.position;
+                    projectile.transform.up = transform.up;
+
+                    //Bullet spray, default 0
+                    projectile.transform.Rotate(Random.Range(-spray, spray), Random.Range(-spray, spray), 0);
+                }
                 
                 timeCounter = 0;
             } else {
@@ -85,7 +178,7 @@ public class PotatoGunScript : MonoBehaviour
         }
     }
 
-    public void cropHarvest(){
+    public bool cropHarvest(){
 
         if (targetCrop == null){
             targetCrop = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
@@ -100,5 +193,26 @@ public class PotatoGunScript : MonoBehaviour
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
         }
+		return inRange;
     }
+	
+	public bool cropPlant(){
+		
+		//check that the player has enough ammo to plant.
+		if(ammoCount < plantCost)
+			return false;
+		
+		//access grid and get current grid position.
+		Grid g = grid.GetComponent<Grid>();
+		Vector3 gridPosition = g.GetCellCenterWorld(g.WorldToCell(transform.position));
+		
+		//check if there is already a potato at the grid position.
+		GameObject closestPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
+		if(gridPosition == closestPotato.transform.position)
+			return false;
+		
+		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
+		ammoCount -= plantCost;
+		return true;
+	}
 }
