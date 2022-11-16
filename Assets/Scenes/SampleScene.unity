@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3625492931915627782, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3625492931915627782, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
       propertyPath: m_LocalScale.x
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083099651515418616, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4083099651515418616, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1635,7 +1635,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -1975,7 +1975,7 @@ Transform:
   m_Children:
   - {fileID: 485553492}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1448255892 stripped
 GameObject:
@@ -2344,7 +2344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1489902293252378524, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1489902293252378524, guid: d13bf0aefaaba1c49ab6f406c17d6c5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2436,9 +2436,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1448255900}
     m_Modifications:
+    - target: {fileID: 130575316790277909, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 130575316790277910, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 130575316790277910, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_Enabled
@@ -2523,6 +2527,10 @@ PrefabInstance:
     - target: {fileID: 130575318378528085, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: m_Name
       value: PotatoGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 130575318378528085, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: ammo
@@ -2904,7 +2912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5627974053393129449, guid: 22ffd5b6ab6368c4fb98e1b7915fba8e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5627974053393129449, guid: 22ffd5b6ab6368c4fb98e1b7915fba8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2957,7 +2965,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3238677565889243063, guid: 49f6c207a9fa4024da4a1ddba65b18a7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3238677565889243063, guid: 49f6c207a9fa4024da4a1ddba65b18a7, type: 3}
       propertyPath: m_LocalScale.x
@@ -3015,6 +3023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmer
       objectReference: {fileID: 0}
+    - target: {fileID: 5593599791212801964, guid: 49f6c207a9fa4024da4a1ddba65b18a7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f6c207a9fa4024da4a1ddba65b18a7, type: 3}
 --- !u!1001 &6679760169659293339
@@ -3030,7 +3042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4188747786828267552, guid: 584219cc42df34343aa03c500e876740, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4188747786828267552, guid: 584219cc42df34343aa03c500e876740, type: 3}
       propertyPath: m_LocalPosition.x
