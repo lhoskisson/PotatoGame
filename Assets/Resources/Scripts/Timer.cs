@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 	//time that the level lasts in seconds
-	public float levelTime = 180.0f; 
+	public static float levelTime = 180.0f; 
 	
 	public GameObject timeText;
 
