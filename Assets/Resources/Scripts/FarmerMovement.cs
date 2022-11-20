@@ -20,10 +20,7 @@ public class FarmerMovement : MonoBehaviour
         }
     }
     public void Movement(){
-
         
-        
-
         //Movement using WASD keys
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
