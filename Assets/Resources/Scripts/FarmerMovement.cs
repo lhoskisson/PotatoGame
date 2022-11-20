@@ -57,12 +57,4 @@ public class FarmerMovement : MonoBehaviour
         farmer.velocity = Vector3.zero;
         isKnocked = false;  
     }
-    // public float farmerAcceleration(float x, float y){
-    //     if ((y != 0 || x != 0) && (speed <= maxSpeed)){
-    //         speed = speed + acceleration * Time.smoothDeltaTime;
-    //     } else {
-    //         speed = 0f;
-    //     }
-    //     return speed;
-    // }
 }

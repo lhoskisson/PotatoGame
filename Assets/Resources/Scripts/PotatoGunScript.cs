@@ -36,7 +36,6 @@ public class PotatoGunScript : MonoBehaviour
     //Round count
     private int ammoCount;
     private bool inRange = false;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -227,7 +226,7 @@ public class PotatoGunScript : MonoBehaviour
         }else if (ammoCount >= 51){
             ammo.color = Color.yellow;
             ammo.fontSize = 24;
-        } else if (ammoCount >= 11){
+        } else if (ammoCount >= 21){
             ammo.color = new Color (.9622f, .4127f, 0f);
             ammo.fontSize = 26;
             ammo.fontStyle = FontStyle.Bold;
@@ -237,5 +236,4 @@ public class PotatoGunScript : MonoBehaviour
             ammo.fontStyle = FontStyle.Bold;
         }
     }
-    
 }
