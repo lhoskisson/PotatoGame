@@ -6,11 +6,12 @@ public class FarmerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     Vector3 moveFarmer;
-    public float speed;
-    // private float maxSpeed = 100f;
-    // private float acceleration = 5f;
+    public float speed = 5f;
     private bool isKnocked = false;
     
+    void start(){
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Update(){
 
         if(!isKnocked){
@@ -20,14 +21,15 @@ public class FarmerMovement : MonoBehaviour
     }
     public void Movement(){
 
-        rb = GetComponent<Rigidbody2D>();
+        
+        
 
         //Movement using WASD keys
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-        moveFarmer = new Vector3(x, y, 0f);
-        transform.position += moveFarmer * (speed * Time.smoothDeltaTime);
         
+        moveFarmer = new Vector3(x, y, 0f);
+        transform.position += moveFarmer * (speed * Time.smoothDeltaTime); 
     }
     public void MouseRotation(){
         //Rotating Camera
