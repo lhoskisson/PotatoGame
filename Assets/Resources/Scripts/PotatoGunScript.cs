@@ -36,7 +36,6 @@ public class PotatoGunScript : MonoBehaviour
     //Round count
     private int ammoCount;
     private bool inRange = false;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -155,12 +154,14 @@ public class PotatoGunScript : MonoBehaviour
         timeCounter = timeCounter + Time.smoothDeltaTime;
 
         ammo.text = "Ammo Count: " + ammoCount;
+
         //Firing Projectile
         if((Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
+
+            changeText();
             
             if (ammoCount > 0){
                 ammoCount--;
-                
 
                 for(int i = 0; i < timesFired; i++) {
                     GameObject projectile = Instantiate(proj);
@@ -218,4 +219,21 @@ public class PotatoGunScript : MonoBehaviour
 		ammoCount -= plantCost;
 		return true;
 	}
+    public void changeText(){
+        if (ammoCount >= 101){
+            ammo.color = Color.black;
+            ammo.fontSize = 22;
+        }else if (ammoCount >= 51){
+            ammo.color = Color.yellow;
+            ammo.fontSize = 24;
+        } else if (ammoCount >= 21){
+            ammo.color = new Color (.9622f, .4127f, 0f);
+            ammo.fontSize = 26;
+            ammo.fontStyle = FontStyle.Bold;
+        } else{
+            ammo.color = Color.red;
+            ammo.fontSize = 28;
+            ammo.fontStyle = FontStyle.Bold;
+        }
+    }
 }
