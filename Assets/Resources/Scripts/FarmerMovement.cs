@@ -6,11 +6,12 @@ public class FarmerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     Vector3 moveFarmer;
-    public float speed = 10f;
+    public float speed = 5f;
     private bool isKnocked = false;
     
-    
-    
+    void start(){
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Update(){
 
         if(!isKnocked){
@@ -19,13 +20,13 @@ public class FarmerMovement : MonoBehaviour
         }
     }
     public void Movement(){
-
+        
         //Movement using WASD keys
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-
+        
         moveFarmer = new Vector3(x, y, 0f);
-        transform.position += moveFarmer * (speed * Time.smoothDeltaTime);   
+        transform.position += moveFarmer * (speed * Time.smoothDeltaTime); 
     }
     public void MouseRotation(){
         //Rotating Camera
@@ -36,9 +37,8 @@ public class FarmerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
 
         float force = 5f;
-        rb = GetComponent<Rigidbody2D>();
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
-
+        rb = GetComponent<Rigidbody2D>();
         if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
             if (enemy != null){
                 isKnocked = true;
