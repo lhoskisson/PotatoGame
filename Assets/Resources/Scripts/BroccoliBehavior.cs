@@ -50,7 +50,7 @@ public class BroccoliBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPotato.transform.position,
                 (broccoliSpeed * Time.smoothDeltaTime));
             // checking if the broccoli is in range of a potato, this is where we can adjust the distance they attack at
-            if(Vector3.Distance(gameObject.transform.position, targetPotato.transform.position) < 2.0f)
+            if(Vector3.Distance(gameObject.transform.position, targetPotato.transform.position) < 3.0f)
             {
                 isInRange = true;
             }
