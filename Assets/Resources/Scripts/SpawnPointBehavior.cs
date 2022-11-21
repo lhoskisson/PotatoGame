@@ -16,7 +16,7 @@ public class SpawnPointBehavior : MonoBehaviour
     public GameObject[] waveOne = new GameObject[100];
     public GameObject[] waveTwo = new GameObject[200];
 
-    public int spHealth = 500;
+    public int spHealth = 1000;
     public int waveOneBudget = 100;
     public int waveTwoBudget = 200;
     public bool waveOneIsSpawned;
@@ -175,7 +175,7 @@ public class SpawnPointBehavior : MonoBehaviour
     // method that will be used to refill the spawners health in the SpawnPointManager
     public void refillHealth()
     {
-        spHealth = 500;
+        spHealth = 1000;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
