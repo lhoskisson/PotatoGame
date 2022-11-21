@@ -26,6 +26,9 @@ public class PotatoGunScript : MonoBehaviour
     //Tip of the gun to fire from
     public GameObject gunTip;
 
+    //GunUI
+    public GunUI myUI;
+
     //Gun Defaults
     public float cooldown = 0.2f;
     public float timeCounter = 0f;
@@ -112,41 +115,50 @@ public class PotatoGunScript : MonoBehaviour
 
         //If the gun mode changed
         if(modeChanged == 0) {
-            if(mode == 0) {
-                //Default
-
-                cooldown = 0.2f;
-                spray = 0f;
-                timesFired = 1;
-
-                gunTip.GetComponent<FiringPointScript>().spriteChange(0);
-            } else if(mode == 1) {
-                //MachineGun
-
-                cooldown = 0.05f;
-                spray = 20f;
-                timesFired = 1;
-
-                gunTip.GetComponent<FiringPointScript>().spriteChange(1);
-            } else if(mode == 2) {
-                //Slow, Chunky
-
-                cooldown = 1f;
-                spray = 0f;
-                timesFired = 1;
-
-                gunTip.GetComponent<FiringPointScript>().spriteChange(2);
-
-            } else if(mode == 3) {
-                //Shotgun
-
-                cooldown = 0.5f;
-                spray = 45f;
-                timesFired = 20;
-
-                gunTip.GetComponent<FiringPointScript>().spriteChange(3);
-            }
+            myUI.setVal(mode);
+            setMode(mode);
         }
+    }
+
+    public void setMode(int input) {
+        if(input == 0) {
+            //Default
+
+            cooldown = 0.2f;
+            spray = 0f;
+            timesFired = 1;
+
+            gunTip.GetComponent<FiringPointScript>().spriteChange(0);
+        } else if(input == 1) {
+            //MachineGun
+
+            cooldown = 0.05f;
+            spray = 20f;
+            timesFired = 1;
+
+            gunTip.GetComponent<FiringPointScript>().spriteChange(1);
+        } else if(input == 2) {
+            //Slow, Chunky
+
+            cooldown = 1f;
+            spray = 0f;
+            timesFired = 1;
+
+            gunTip.GetComponent<FiringPointScript>().spriteChange(2);
+
+        } else if(input == 3) {
+            //Shotgun
+
+            cooldown = 0.5f;
+            spray = 45f;
+            timesFired = 20;
+
+            gunTip.GetComponent<FiringPointScript>().spriteChange(3);
+        }
+
+        if(input != mode) {
+            mode = input;
+        } 
     }
 
     public void firingProjectiles(){

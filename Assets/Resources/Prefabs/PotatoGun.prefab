@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d391c10aa6013b849a0baa3e90ba29a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -107,6 +107,9 @@ MonoBehaviour:
   gunTip: {fileID: 130575316790277909}
   cooldown: 0.2
   timeCounter: 0
+  spray: 0
+  timesFired: 1
+  mode: 0
 --- !u!1001 &492769866871298492
 PrefabInstance:
   m_ObjectHideFlags: 0
