@@ -8,6 +8,8 @@ public class PotatoManager : MonoBehaviour
 	private List<GameObject> spawned_potatoes;
 	
 	public GameObject grid;
+
+	public bool initialized = false;
 	
 	//the smallest modifier that could be applied to the crop yeild from luck
 	public float harvestLuckMin = -0.1f;
@@ -20,8 +22,17 @@ public class PotatoManager : MonoBehaviour
 		if(grid == null)
 			grid = GameObject.Find("Grid");
 		spawned_potatoes = new List<GameObject>();
-        SpawnPotatoes(new Vector3(0,0,1), 5, 100);		
+		initialized = true;
+        //SpawnPotatoes(new Vector3(0, 0, 1), 5, 100);
     }
+
+	/*
+	 * Returns the number of potatoes currently spawned.
+	 */
+	public int PotatoCount()
+	{
+		return spawned_potatoes.Count;
+	}
 	
 	/*
 		Searches the list of spawned potato crops and returns the one closest to the given location
@@ -169,7 +180,7 @@ public class PotatoManager : MonoBehaviour
 	public void SpawnPotato(Vector3 location)
 	{
 		Grid g = grid.GetComponent<Grid>();
-		spawned_potatoes.Add(Instantiate(potato_crop, g.GetCellCenterWorld(g.WorldToCell(location)), Quaternion.identity) as GameObject);
+        spawned_potatoes.Add(Instantiate(potato_crop, g.GetCellCenterWorld(g.WorldToCell(location)), Quaternion.identity) as GameObject);
 	}
 	
 	

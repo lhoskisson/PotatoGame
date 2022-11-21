@@ -17,5 +17,4 @@ public class GameOver : MonoBehaviour
         Timer.levelTime = Timer.startLevelTime;
         SceneManager.LoadScene("Menu");
     }
-
 }
