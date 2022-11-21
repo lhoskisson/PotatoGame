@@ -64,6 +64,11 @@ public class PotatoGunScript : MonoBehaviour
         }
     }
 
+    public int getAmmoCount()
+    {
+        return ammoCount;
+    }
+
     //Handles Camera rotation
     public void movement(){
         //Rotating Camera
@@ -196,6 +201,7 @@ public class PotatoGunScript : MonoBehaviour
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
         }
+        targetCrop = null;
 		return inRange;
     }
 	
@@ -211,8 +217,9 @@ public class PotatoGunScript : MonoBehaviour
 		
 		//check if there is already a potato at the grid position.
 		GameObject closestPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
-		if(gridPosition == closestPotato.transform.position)
-			return false;
+        if (closestPotato != null)
+		    if(gridPosition == closestPotato.transform.position)
+			    return false;
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
