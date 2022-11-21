@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public GameObject potatoGun;
 
     private bool initPotatoesSpawned = false;
+    private bool gameOver = false;
 
     void Start()
     {
@@ -21,8 +22,11 @@ public class LevelManager : MonoBehaviour
             SpawnInitPotatoes();
 
         //lose condition
-        if (potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() == 0 && potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
+        if (!gameOver && /*potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() == 0 &&*/ potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
+        {
             Timer.levelTime = 0;
+            gameOver = true;
+        }
     }
 
     private void SpawnInitPotatoes()
