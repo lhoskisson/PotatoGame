@@ -60,7 +60,7 @@ public class PotatoGunScript : MonoBehaviour
         if(Input.GetKeyDown("space")){
 		    cropHarvest();
         }
-        if(Input.GetKeyDown("c"))
+        if(Input.GetKey("c"))
         {
             cropPlant();
         }
