@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BroccoliBehavior : MonoBehaviour
 {
+    // health bar variables
+    public HealthBarBehavior healthBar;
+    public float minHealth = 0f;
+    public float maxHealth = 100f;
 
-    public int broccoliHealth = 100;
+    public float broccoliHealth = 100;
     public static int broccoliCost = 3;
 
     public float broccoliSpeed = 1f;
@@ -21,6 +25,11 @@ public class BroccoliBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initializing healthBar on enemy
+        minHealth = maxHealth;
+        healthBar.SetHealth(minHealth, maxHealth);
+        healthBar.offset = new Vector3(0f, 1f, 0f);
+
         broccoliProjectile = Resources.Load<GameObject>("Prefabs/BroccoliProjectile");
         potatoManager = GameObject.Find("Potato Manager");
     }
@@ -91,9 +100,11 @@ public class BroccoliBehavior : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            // Broccoli are a stronger enemy and should take 3-4 default projectiles to kill.
-            broccoliHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
-            if(broccoliHealth <= 0)
+            // broccoliHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
+            // adjusting healthbar
+            minHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
+            healthBar.SetHealth(minHealth, maxHealth);
+            if (minHealth <= 0)
                 Destroy(gameObject);
         }
     }
