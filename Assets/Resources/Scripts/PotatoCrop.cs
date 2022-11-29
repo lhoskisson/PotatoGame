@@ -22,11 +22,11 @@ public class PotatoCrop : MonoBehaviour
 	private float lifetime = 0;
 
 	//times when the potato crop automatically changes growth state.
-	private float sproutTime = 30;
+	private float sproutTime = 15;
 
-	private float halfTime = 60;
+	private float halfTime = 30;
 
-	private float fullTime = 90;
+	private float fullTime = 45;
 	
 	//the default health for the potato crop
 	public const int DEFAULT_HEALTH = 50;
