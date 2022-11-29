@@ -183,7 +183,24 @@ public class PotatoManager : MonoBehaviour
         spawned_potatoes.Add(Instantiate(potato_crop, g.GetCellCenterWorld(g.WorldToCell(location)), Quaternion.identity) as GameObject);
 	}
 	
-	
+	public void SpawnPotatoesRectangle(Vector3 location, int rows, int cols)
+	{
+		Grid g = grid.GetComponent<Grid>();
+		Vector3 cellSize = g.cellSize;
+		Vector3 cellGap = g.cellGap;
+
+		//find starting x and y (top left of rectangle)
+		float startX = location.x-(((float)cols)/2);
+		float startY = location.y+(((float)rows)/2);
+
+		for(int row=0; row<rows; row++)
+		{
+			for(int col=0; col<cols; col++)
+			{
+				SpawnPotato(new Vector3(startX+(col*(cellSize.x+cellGap.x)), startY-(row*(cellSize.y+cellGap.y)), location.z));
+			}
+		}
+	}
 	/*
 		Spawns the Potato_Crop prefabs based on the given parameters.The parameters describe an area 
 		in which the potatoes are placed, as well as the density and distribution of potatoes in the area.
