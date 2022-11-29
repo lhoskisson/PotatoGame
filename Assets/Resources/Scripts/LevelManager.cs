@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
         PotatoManager pm = potatoManager.GetComponent<PotatoManager>();
         if (!pm.initialized)
             return;
-        pm.SpawnPotatoes(new Vector3(0, 0, 1), 5, 100);
+        pm.SpawnPotatoesRectangle(new Vector3(0, 0, 1), 7, 7);
         initPotatoesSpawned = true;
     }
 }
