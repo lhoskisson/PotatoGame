@@ -504,6 +504,7 @@ MonoBehaviour:
   broccoliSpeed: 1
   timeDelay: 1
   targetPotato: {fileID: 0}
+  Farmer: {fileID: 0}
   potatoManager: {fileID: 0}
   broccoliProjectile: {fileID: 0}
   isInRange: 0
