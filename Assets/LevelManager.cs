@@ -22,8 +22,13 @@ public class LevelManager : MonoBehaviour
             SpawnInitPotatoes();
 
         //lose condition
-        if (!gameOver && /*potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() == 0 &&*/ potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
+        if (!gameOver && potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() <= 0 && potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
         {
+            // resetting the pathing for the enemies so they have the proper pathing mode when the player restarts
+            BroccoliBehavior.pathingMode = false;
+            CarrotBehavior.pathingMode = false;
+            TomatoBehavior.pathingMode = false;
+
             Timer.levelTime = 0;
             gameOver = true;
         }
