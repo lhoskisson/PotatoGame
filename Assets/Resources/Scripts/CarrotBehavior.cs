@@ -10,19 +10,22 @@ public class CarrotBehavior : MonoBehaviour
     public int carrotDamage = 1;
     public static int carrotCost = 1;
 
-    public float carrotSpeed = 1f;
+    public float carrotSpeed = 2f;
     private float time = 0.0f;
     public float timeDelay = 1.0f; 
     
     public GameObject targetPotato;
     public GameObject potatoManager;
+    public GameObject Farmer;
 
     public bool hasTouchedPotato;
+    public static bool pathingMode; // false = pathing to crops, true = pathing to player
 
     // Start is called before the first frame update
     void Start()
     {
 		potatoManager = GameObject.Find("Potato Manager");
+        Farmer = GameObject.Find("Farmer");
     }
 
     // Update is called once per frame
@@ -39,9 +42,13 @@ public class CarrotBehavior : MonoBehaviour
 
     private void moveToPotato()
     {
-		if(targetPotato == null)
+        if(pathingMode == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Farmer.transform.position, (carrotSpeed * Time.smoothDeltaTime));
+        }
+		else if(targetPotato == null)
 		{
-      // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
+            // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
 			targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
 			// setting hasTouchedPotato to false while carrots search for another potato
 			hasTouchedPotato = false;

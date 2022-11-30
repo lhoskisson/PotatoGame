@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class BroccoliProjectile : MonoBehaviour
 {
-    public float lifeSpan = 3.0f;
+    public float lifeSpan = 2.0f;
     public static int broccoliDamage = 5;
     public float projectileSpeed = 5f;
     public float timeCounter = 0f;
-
+    public PotatoGunScript ammoCountLink;
 
     // Start is called before the first frame update
     void Start()

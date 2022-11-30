@@ -17,9 +17,11 @@ public class BroccoliBehavior : MonoBehaviour
     public float timeDelay = 1.0f;
 
     public GameObject targetPotato;
+    public GameObject Farmer; // used to path to the farmer in the moveBroccoli method
     public GameObject potatoManager;
     public GameObject broccoliProjectile;
-    
+
+    public static bool pathingMode; // false = path to crops, true = path to farmer
     public bool isInRange = false;
 
     // Start is called before the first frame update
@@ -32,21 +34,35 @@ public class BroccoliBehavior : MonoBehaviour
 
         broccoliProjectile = Resources.Load<GameObject>("Prefabs/BroccoliProjectile");
         potatoManager = GameObject.Find("Potato Manager");
+        Farmer = GameObject.Find("Farmer");
     }
 
     // Update is called once per frame
     void Update()
     {
         // if statement moves broccoli towards a potato until one is in range, then attacks if one is.
-        if (isInRange == true && targetPotato != null)
+        if (isInRange == true && (targetPotato != null || pathingMode == true)) // maybe we can remove the targetPotato check to have them throw at the farmer.
             throwBroccoli();
         else
             moveBroccoli();
+
     }
 
     private void moveBroccoli()
     {
-        if (targetPotato == null)
+        if (pathingMode == true)
+        {
+            // moving towards the farmer
+            transform.position = Vector3.MoveTowards(transform.position, Farmer.transform.position, (broccoliSpeed * Time.smoothDeltaTime));
+            // setting is in range to true so the broccoli will attack the farmer when in range
+            if (Vector3.Distance(gameObject.transform.position, Farmer.transform.position) < 3.0f)
+                isInRange = true;
+            else
+                isInRange = false;
+
+            
+        }
+        else if(targetPotato == null)
         {
             // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
             targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
@@ -73,10 +89,15 @@ public class BroccoliBehavior : MonoBehaviour
         if (time >= timeDelay)
         {   
             GameObject projectile = Instantiate(broccoliProjectile);
-            if(projectile != null)
+            if(projectile != null && pathingMode == false)
             {
                 projectile.transform.position = gameObject.transform.position;
                 projectile.transform.up = targetPotato.transform.position - projectile.transform.position;
+            }
+            else if (projectile != null && pathingMode == true)
+            {
+                projectile.transform.position = gameObject.transform.position;
+                projectile.transform.up = Farmer.transform.position - projectile.transform.position;
             }
             time = 0f;
         }

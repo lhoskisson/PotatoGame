@@ -20,14 +20,15 @@ public class TomatoBehavior : MonoBehaviour
 
     public GameObject targetPotato;
     public GameObject potatoManager;
-    // public GameObject[] targetPotatoes; (not currently in use, see moveToPotato)
+    public GameObject Farmer;
 
     public bool hasTouchedPotato;
-
+    public static bool pathingMode;
     // Start is called before the first frame update
     void Start()
     {
         potatoManager = GameObject.Find("Potato Manager");
+        Farmer = GameObject.Find("Farmer");
 
         // initializing healthBar on enemy
         minHealth = maxHealth;
@@ -50,7 +51,11 @@ public class TomatoBehavior : MonoBehaviour
 
     private void moveToPotato()
     {
-        if (targetPotato == null)
+        if(pathingMode == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Farmer.transform.position, (tomatoSpeed * Time.smoothDeltaTime));
+        }
+        else if (targetPotato == null)
         {
             // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
             targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);

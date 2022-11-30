@@ -60,7 +60,7 @@ public class PotatoGunScript : MonoBehaviour
         if(Input.GetKeyDown("space")){
 		    cropHarvest();
         }
-        if(Input.GetKey("c"))
+        if(Input.GetKeyDown("c"))
         {
             cropPlant();
         }
@@ -69,6 +69,11 @@ public class PotatoGunScript : MonoBehaviour
     public int getAmmoCount()
     {
         return ammoCount;
+    }
+    // method added to be able to update the ammocount when enemies hit the farmer
+    public void setAmmoCount(int newAmmoCount)
+    {
+        ammoCount = newAmmoCount;
     }
 
     //Handles Camera rotation
@@ -236,7 +241,16 @@ public class PotatoGunScript : MonoBehaviour
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
-		return true;
+
+        // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
+        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        {
+            BroccoliBehavior.pathingMode = false;
+            CarrotBehavior.pathingMode = false;
+            TomatoBehavior.pathingMode = false;
+        }
+
+        return true;
 	}
     public void changeText(){
         if (ammoCount >= 101){
