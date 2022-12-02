@@ -106989,8 +106989,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecc3cff2f20d6e4cb6c683a95d3e276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialCropRows: 7
+  initialCropColumns: 7
   potatoManager: {fileID: 446670313}
   potatoGun: {fileID: 787718864}
+  gameOverScreen: {fileID: 2083687941}
 --- !u!4 &2006761616
 Transform:
   m_ObjectHideFlags: 0
