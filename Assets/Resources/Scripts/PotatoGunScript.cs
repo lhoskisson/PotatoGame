@@ -43,7 +43,6 @@ public class PotatoGunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       ammoCount = 250;
 	   if(potatoManager == null)
 		   potatoManager = GameObject.FindWithTag("Potato Manager");
 	   if(grid == null)
@@ -69,6 +68,11 @@ public class PotatoGunScript : MonoBehaviour
     public int getAmmoCount()
     {
         return ammoCount;
+    }
+
+    public void setAmmoCount(int ammoCount)
+    {
+        this.ammoCount = ammoCount;
     }
 
     //Handles Camera rotation
