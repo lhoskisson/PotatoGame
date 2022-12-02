@@ -41,8 +41,6 @@ public class FarmerMovement : MonoBehaviour
             speed += accelerationTime * Time.smoothDeltaTime;
         }
 
-        
-
         if ( speed > maxSpeed){
             speed = maxSpeed;
         }
