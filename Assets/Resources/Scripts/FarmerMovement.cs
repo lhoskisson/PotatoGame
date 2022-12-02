@@ -67,7 +67,7 @@ public class FarmerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision){
 
-        float force = speed;
+        float force = speed * 2;
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
