@@ -111736,7 +111736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   acceleration: 0
-  accelerationTime: 2
+  accelerationTime: 3
   maxSpeed: 8
 --- !u!50 &1448255896
 Rigidbody2D:

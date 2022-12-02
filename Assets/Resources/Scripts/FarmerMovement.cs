@@ -9,7 +9,7 @@ public class FarmerMovement : MonoBehaviour
     Vector3 moveFarmer;
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
-    [SerializeField] private float accelerationTime = 2f;
+    [SerializeField] private float accelerationTime = 3f;
     [SerializeField] private float maxSpeed = 7f;
 
 
@@ -20,8 +20,8 @@ public class FarmerMovement : MonoBehaviour
     void Update(){
         
         if(!isKnocked){
-            rb.GetComponent<Rigidbody2D>().sharedMaterial.friction = 5f;
-            gameObject.GetComponent<Collider2D>().sharedMaterial.friction = 5f;
+            rb.GetComponent<Rigidbody2D>().sharedMaterial.friction = 4f;
+            gameObject.GetComponent<Collider2D>().sharedMaterial.friction = 4f;
             Movement();
             MouseRotation();
         } else {
@@ -36,10 +36,15 @@ public class FarmerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        if ( (x == 1 || x == -1) || (y ==1 || y == -1)){
+        if ( (x == 1 || x == -1) || (y == 1 || y == -1)){
             acceleration = maxSpeed / accelerationTime;
             speed += accelerationTime * Time.smoothDeltaTime;
         }
+        if ( (x == 0) && (y == 0)){
+            
+            speed = 1f;
+        }
+        
 
         if ( speed > maxSpeed){
             speed = maxSpeed;
@@ -62,7 +67,7 @@ public class FarmerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision){
 
-        float force = 5f;
+        float force = speed;
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
