@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
         }
         if(Input.GetKeyDown("["))
         {
-            Debug.Log(SceneManager.GetActiveScene().name);
             //go back one level
             if (SceneManager.GetActiveScene().name == "Level 1")
             {
@@ -61,12 +60,13 @@ public class LevelManager : MonoBehaviour
         }
 
         //lose condition
-        if (!gameOver && /*potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() == 0 &&*/ potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
+        if (!gameOver && potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() == 0 && potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
         {
             Timer.levelTime = 0;
             ResetAmmoTracker();
             gameOver = true;
             gameOverScreen.SetActive(true);
+            gameOverScreen.GetComponent<GameOver>().DisplayLoss();
         }
 
         //handle end of level
@@ -77,27 +77,30 @@ public class LevelManager : MonoBehaviour
             foreach (GameObject pm in potatoManagers)
                 pm.GetComponent<PotatoManager>().HarvestAllPotatoes();
 
-            TrackAmmo();
-            
-            //TODO: Add Next Level Menu for inbetween levels
+            if (!gameOver)
+            {
+                TrackAmmo();
 
-            //go to next level
-            if(SceneManager.GetActiveScene().name == "Level 1")
-            {
-                Timer.levelTime = Timer.startLevelTime;
-                SceneManager.LoadScene("Level 2");
-            }
-            else if(SceneManager.GetActiveScene().name == "Level 2")
-            {
-                Timer.levelTime = Timer.startLevelTime;
-                SceneManager.LoadScene("Level 3");
-            }
-            //TODO: Add win screen upon completing level 3
-            else
-            {
-                ResetAmmoTracker();
-                Timer.levelTime = Timer.startLevelTime;
-                SceneManager.LoadScene("Menu");
+                //go to next level
+                //TODO: Add Next Level Menu for inbetween levels
+                if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    Timer.levelTime = Timer.startLevelTime;
+                    SceneManager.LoadScene("Level 2");
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 2")
+                {
+                    Timer.levelTime = Timer.startLevelTime;
+                    SceneManager.LoadScene("Level 3");
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 3")
+                {
+                    gameOver = true;
+                    gameOverScreen.SetActive(true);
+                    gameOverScreen.GetComponent<GameOver>().DisplayWin();
+                    ResetAmmoTracker();
+                    Timer.levelTime = Timer.startLevelTime;
+                }
             }
         }
     }
