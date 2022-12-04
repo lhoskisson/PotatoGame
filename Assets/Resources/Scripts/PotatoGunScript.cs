@@ -69,15 +69,11 @@ public class PotatoGunScript : MonoBehaviour
     {
         return ammoCount;
     }
+
     // method added to be able to update the ammocount when enemies hit the farmer
     public void setAmmoCount(int newAmmoCount)
     {
         ammoCount = newAmmoCount;
-    }
-
-    public void setAmmoCount(int ammoCount)
-    {
-        this.ammoCount = ammoCount;
     }
 
     //Handles Camera rotation
