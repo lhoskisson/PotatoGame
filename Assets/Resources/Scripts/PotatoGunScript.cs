@@ -73,8 +73,6 @@ public class PotatoGunScript : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-=======
     public int getAmmoCount()
     {
         return ammoCount;
@@ -85,7 +83,6 @@ public class PotatoGunScript : MonoBehaviour
         ammoCount = newAmmoCount;
     }
 
->>>>>>> Stashed changes
     //Handles Camera rotation
     public void movement(){
         //Rotating Camera
@@ -272,20 +269,16 @@ public class PotatoGunScript : MonoBehaviour
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
-<<<<<<< Updated upstream
-		return true;
-=======
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-            BroccoliBehavior.pathingMode = false;
-            CarrotBehavior.pathingMode = false;
-            TomatoBehavior.pathingMode = false;
+            //BroccoliBehavior.pathingMode = false;
+            //CarrotBehavior.pathingMode = false;
+            //TomatoBehavior.pathingMode = false;
         }
 
         return true;
->>>>>>> Stashed changes
 	}
     public void changeText(){
         if (ammoCount >= 101){

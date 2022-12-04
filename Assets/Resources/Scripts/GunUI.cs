@@ -60,11 +60,6 @@ public class GunUI : MonoBehaviour
     public void toggleUI(int which, bool tog) {
         myGunUI[which].enabled = tog;
         myGun.modesEnabled[which] = tog;
-
-        if(tog) {
-            myGunUI[which].interactable = true;
-        } else {
-            myGunUI[which].interactable = false;
-        }
+        myGunUI[which].interactable = tog;
     }
 }
