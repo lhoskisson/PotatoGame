@@ -13,7 +13,8 @@ public class FarmerMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 7f;
 
     private bool isKnocked = false;
-
+    public PotatoGunScript ammoCountLink;
+    
     void start(){
         rb = GetComponent<Rigidbody2D>();
     }
@@ -92,6 +93,27 @@ public class FarmerMovement : MonoBehaviour
                 rb.AddForce(distance, ForceMode2D.Impulse);
                 StartCoroutine(timer(rb));
             }
+        }
+
+        // checking for collision with broccoli projectiles so the player can be hit by them, the broccoli
+        // pathing mode can be used in each of these if statements because all enemies should have the same pathing.
+        if(collision.gameObject.name == "BroccoliProjectile(Clone)" && BroccoliBehavior.pathingMode == true)
+        {
+            int newAmmo = ammoCountLink.GetComponent<PotatoGunScript>().getAmmoCount() - 5;
+            ammoCountLink.GetComponent<PotatoGunScript>().setAmmoCount(newAmmo);
+        }
+        // checking for collision with any enemy, as well as the pathing mode of the broccoli so the 
+        // collision only occurs when crops are destroyed.
+        if (collision.gameObject.tag == "Enemy" && BroccoliBehavior.pathingMode == true)
+        {
+            int newAmmo = ammoCountLink.GetComponent<PotatoGunScript>().getAmmoCount() - 5;
+            ammoCountLink.GetComponent<PotatoGunScript>().setAmmoCount(newAmmo);
+        }
+        // checking for collision with the tomato explosion and taking 3x the crops
+        if(collision.gameObject.name == "TomatoExplosion(Clone)" && BroccoliBehavior.pathingMode == true)
+        {
+            int newAmmo = ammoCountLink.GetComponent<PotatoGunScript>().getAmmoCount() - 15;
+            ammoCountLink.GetComponent<PotatoGunScript>().setAmmoCount(newAmmo);
         }
     }
     private IEnumerator timer(Rigidbody2D farmer){

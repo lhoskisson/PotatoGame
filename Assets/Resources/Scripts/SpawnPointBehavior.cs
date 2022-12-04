@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class SpawnPointBehavior : MonoBehaviour
 {
+    // health bar variables
+    public HealthBarBehavior healthBar;
+    public float minHealth = 0f;
+    public float maxHealth = 1000f;
+
     private GameObject carrotPrefab;
     private GameObject broccoliPrefab;
     private GameObject tomatoPrefab;
@@ -16,7 +21,6 @@ public class SpawnPointBehavior : MonoBehaviour
     public GameObject[] waveOne = new GameObject[100];
     public GameObject[] waveTwo = new GameObject[200];
 
-    public int spHealth = 1000;
     public int waveOneBudget = 100;
     public int waveTwoBudget = 200;
     public bool waveOneIsSpawned;
@@ -39,6 +43,12 @@ public class SpawnPointBehavior : MonoBehaviour
         carrotPrefab = Resources.Load<GameObject>("Prefabs/Carrot");
         broccoliPrefab = Resources.Load<GameObject>("Prefabs/Broccoli");
         tomatoPrefab = Resources.Load<GameObject>("Prefabs/Tomato");
+
+        // initializing healthBar on enemy
+        minHealth = maxHealth;
+        healthBar.SetHealth(minHealth, maxHealth);
+        healthBar.offset = new Vector3(0f, 1.5f, 0f);
+
         createWave(waveOneBudget, waveOne);
         createWave(waveTwoBudget, waveTwo);
     }
@@ -56,7 +66,7 @@ public class SpawnPointBehavior : MonoBehaviour
             spawnWave(waveTwo);
         }
             
-        if(spHealth <= 0)
+        if(minHealth <= 0)
         {
             Disable();
         }
@@ -158,6 +168,8 @@ public class SpawnPointBehavior : MonoBehaviour
         {
             isDisabled = true;
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0f);
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            gameObject.GetComponentInChildren<Canvas>().enabled = false;
             isFirstRun = false;
         }
         time += Time.deltaTime;
@@ -167,6 +179,8 @@ public class SpawnPointBehavior : MonoBehaviour
             time = 0f;
             refillHealth();
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            gameObject.GetComponent<Collider2D>().enabled = true;
+            gameObject.GetComponentInChildren<Canvas>().enabled = true;
             isFirstRun = true;
         }
         
@@ -175,15 +189,17 @@ public class SpawnPointBehavior : MonoBehaviour
     // method that will be used to refill the spawners health in the SpawnPointManager
     public void refillHealth()
     {
-        spHealth = 1000;
+        minHealth = maxHealth;
+        healthBar.SetHealth(minHealth, maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
+            minHealth -= collision.gameObject.GetComponent<ProjectileScript>().damage;
+            healthBar.SetHealth(minHealth, maxHealth);
             Destroy(collision.gameObject);
-            spHealth -= 25;
         }
     }
 }

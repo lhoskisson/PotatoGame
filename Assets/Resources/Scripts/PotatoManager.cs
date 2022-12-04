@@ -167,7 +167,15 @@ public class PotatoManager : MonoBehaviour
 			{
 				spawned_potatoes.RemoveAt(i);
 				Destroy(p);
-				return true;
+                // checking if the potatoCount drops below 0, changing enemy pathing static variable if 0 are left
+                if (spawned_potatoes.Count == 0)
+                {
+                    Debug.Log("pathing mode changed to true");
+                    BroccoliBehavior.pathingMode = true;
+					CarrotBehavior.pathingMode = true;
+					TomatoBehavior.pathingMode = true;
+                }
+                return true;
 			}
 		}
 		return false;
