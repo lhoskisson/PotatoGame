@@ -25,16 +25,46 @@ public class GunUI : MonoBehaviour
         swap(0);
     }
 
-    public void swap(int which) {
-        myGun.setMode(which);
-        current = which;
+    //For now, the alphanumeric 7, 8, 9 are shortcuts to enable the modes
+    void Update() {
+        if(Input.GetKey(KeyCode.Alpha7)) {
+            toggleUI(1, true);
+        } else if(Input.GetKey(KeyCode.Alpha8)) {
+            toggleUI(2, true);
+        } else if(Input.GetKey(KeyCode.Alpha9)) {
+            toggleUI(3, true);
+        }
     }
 
+    //Tells the gun to swap to a certain mode
+    //Used when buttons are pushed 
+    public void swap(int which) {
+        if(myGun.modesEnabled[which]) {
+            myGun.setMode(which);
+            current = which;
+        }
+    }
+
+    //Tells the UI to set to a certain mode
+    //Used by the PotatoGun
     public void setVal(int which) {
         if(which != current && which >= 0 && which < 4) {
             myGunUI[which].SetIsOnWithoutNotify(true);
             myGunUI[current].SetIsOnWithoutNotify(false);
             current = which;
+        }
+    }
+
+    //Sets a button associated with one mode to be enabled or disabled
+    //Also updates modesEnabled in PotatoGun
+    public void toggleUI(int which, bool tog) {
+        myGunUI[which].enabled = tog;
+        myGun.modesEnabled[which] = tog;
+
+        if(tog) {
+            myGunUI[which].interactable = true;
+        } else {
+            myGunUI[which].interactable = false;
         }
     }
 }

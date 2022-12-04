@@ -51,7 +51,7 @@ public class ProjectileScript : MonoBehaviour
             //Fry Shotgun
         
             damage = 3;
-            lifeSpan = 0.125f;
+            lifeSpan = 0.175f;
             moveSpeed = 10f;
             pierceNum = 1;
             curr = spriteArray[3];
