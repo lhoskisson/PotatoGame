@@ -138,8 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotHealth: 100
   carrotDamage: 5
-  carrotSpeed: 2
+  carrotSpeed: 6
   timeDelay: 1
   targetPotato: {fileID: 0}
   potatoManager: {fileID: 3625492931915627780, guid: cb85b6775f6d9014489c7a36f768848d, type: 3}
+  Farmer: {fileID: 0}
   hasTouchedPotato: 0

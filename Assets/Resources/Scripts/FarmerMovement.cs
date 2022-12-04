@@ -15,7 +15,7 @@ public class FarmerMovement : MonoBehaviour
     private bool isKnocked = false;
     public PotatoGunScript ammoCountLink;
     
-    void start(){
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
     }
     void Update(){
