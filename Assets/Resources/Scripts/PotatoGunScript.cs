@@ -44,7 +44,6 @@ public class PotatoGunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       ammoCount = 250;
 	   if(potatoManager == null)
 		   potatoManager = GameObject.FindWithTag("Potato Manager");
 	   if(grid == null)

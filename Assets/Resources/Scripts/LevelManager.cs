@@ -138,6 +138,7 @@ public class LevelManager : MonoBehaviour
     {
         //record ammoCount
         ammoTracker = potatoGun.GetComponent<PotatoGunScript>().getAmmoCount();
+        Debug.Log(ammoTracker);
     }
 
     private void ResetAmmoTracker()
