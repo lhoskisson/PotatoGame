@@ -35,6 +35,7 @@ public class PotatoGunScript : MonoBehaviour
     public float spray = 0f;
     public int timesFired = 1;
     public int mode = 0;
+    public GunManager myModes;
 
     //Round count
     private int ammoCount;
@@ -43,10 +44,26 @@ public class PotatoGunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       ammoCount = 250;
 	   if(potatoManager == null)
 		   potatoManager = GameObject.FindWithTag("Potato Manager");
 	   if(grid == null)
 		   grid = GameObject.Find("Grid");
+
+        //Set initial modes active.
+        //May have to move this elsewhere
+
+        if(myModes.timesInitialized <= 4) {
+            myModes.timesInitialized++;
+        }
+
+        for(int j = 0; j < 4; j++) {
+            myUI.toggleUI(j, false);
+        }
+
+        for(int i = 0; i < myModes.timesInitialized; i++) {
+            myUI.toggleUI(i, true);
+        }
     }
 
     // Update is called once per frame
@@ -69,7 +86,6 @@ public class PotatoGunScript : MonoBehaviour
     {
         return ammoCount;
     }
-
     // method added to be able to update the ammocount when enemies hit the farmer
     public void setAmmoCount(int newAmmoCount)
     {
@@ -84,6 +100,13 @@ public class PotatoGunScript : MonoBehaviour
         transform.up = mouse - transform.position;
     }
 
+    //Toggles modes that are available
+    public void toggleModes(int which) {
+        if(which >= 0 && which < 4) {
+            myModes.modesEnabled[which] = !myModes.modesEnabled[which];
+        }
+    }
+
     //Changes the mode for the gun
     //Also changes gunside firing info: times a projectile is fired, 
     //Firerate, and spray.
@@ -91,17 +114,17 @@ public class PotatoGunScript : MonoBehaviour
         int oldMode = mode;
 
         //Key 1: Default PotatoGun
-        if(Input.GetKey(KeyCode.Alpha1) && mode != 0) {
+        if(Input.GetKey(KeyCode.Alpha1) && mode != 0 && myModes.modesEnabled[0]) {
             mode = 0;
-        } else if(Input.GetKey(KeyCode.Alpha2) && mode != 1) {
+        } else if(Input.GetKey(KeyCode.Alpha2) && mode != 1 && myModes.modesEnabled[1]) {
             //Key 2:Fries MachineGun
 
             mode = 1;
-        } else if(Input.GetKey(KeyCode.Alpha3) && mode != 2) {
+        } else if(Input.GetKey(KeyCode.Alpha3) && mode != 2 && myModes.modesEnabled[2]) {
             //Key 3: Slow, but powerful
 
             mode = 2;
-        } else if(Input.GetKey(KeyCode.Alpha4) && mode != 3) {
+        } else if(Input.GetKey(KeyCode.Alpha4) && mode != 3 && myModes.modesEnabled[3]) {
             //Key 4: Shotgun
 
             mode = 3;
@@ -112,12 +135,28 @@ public class PotatoGunScript : MonoBehaviour
             if(mode > 3) {
                 mode = 0;
             }
+
+            while(!myModes.modesEnabled[mode]) {
+                mode++;
+
+                if(mode > 3) {
+                    mode = 0;
+                }
+            }
         } else if(Input.GetAxis("Mouse ScrollWheel") < 0f) {
             //Scroll Down
             mode--;
 
             if(mode < 0) {
-                mode = 3;
+                    mode = 3;
+            }
+
+            while(!myModes.modesEnabled[mode]) {
+                mode--;
+
+                if(mode < 0) {
+                    mode = 3;
+                }
             }
         }
 
@@ -219,7 +258,6 @@ public class PotatoGunScript : MonoBehaviour
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
         }
-        targetCrop = null;
 		return inRange;
     }
 	
@@ -235,19 +273,18 @@ public class PotatoGunScript : MonoBehaviour
 		
 		//check if there is already a potato at the grid position.
 		GameObject closestPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
-        if (closestPotato != null)
-		    if(gridPosition == closestPotato.transform.position)
-			    return false;
+		if(gridPosition == closestPotato.transform.position)
+			return false;
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-            BroccoliBehavior.pathingMode = false;
-            CarrotBehavior.pathingMode = false;
-            TomatoBehavior.pathingMode = false;
+           // BroccoliBehavior.pathingMode = false;
+            //CarrotBehavior.pathingMode = false;
+            //TomatoBehavior.pathingMode = false;
         }
 
         return true;
