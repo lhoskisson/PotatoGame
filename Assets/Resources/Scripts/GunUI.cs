@@ -59,6 +59,10 @@ public class GunUI : MonoBehaviour
     //Sets a button associated with one mode to be enabled or disabled
     //Also updates modesEnabled in PotatoGun
     public void toggleUI(int which, bool tog) {
+        if(which >= 4) {
+            return;
+        }
+
         myGunUI[which].enabled = tog;
         myModes.modesEnabled[which] = tog;
         myGunUI[which].interactable = tog;

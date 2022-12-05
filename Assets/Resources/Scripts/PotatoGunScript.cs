@@ -55,6 +55,10 @@ public class PotatoGunScript : MonoBehaviour
 
         if(myModes.timesInitialized <= 4) {
             myModes.timesInitialized++;
+        }  
+        
+        if(myModes.timesInitialized == 3) {
+            myModes.timesInitialized = 4;
         }
 
         for(int j = 0; j < 4; j++) {
