@@ -5,7 +5,6 @@ using UnityEngine;
 public class FarmerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private PolygonCollider2D cd;
     Vector3 moveFarmer;
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
@@ -29,7 +28,7 @@ public class FarmerMovement : MonoBehaviour
             gameObject.GetComponent<Collider2D>().sharedMaterial.friction = 6f;
             Movement();
             MouseRotation();
-        } else {
+        }else {
             rb.GetComponent<Rigidbody2D>().sharedMaterial.friction = 0f;
             gameObject.GetComponent<Collider2D>().sharedMaterial.friction = 0f;
         }
