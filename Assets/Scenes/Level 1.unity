@@ -105878,7 +105878,7 @@ MonoBehaviour:
   acceleration: 0
   accelerationTime: 3
   maxSpeed: 7
-  ammoCountLink: {fileID: 0}
+  ammoCountLink: {fileID: 1042468100}
 --- !u!50 &1448255896
 Rigidbody2D:
   serializedVersion: 4
@@ -106470,6 +106470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialCropRows: 7
   initialCropColumns: 7
+  enemyManager: {fileID: 0}
   potatoManager: {fileID: 446670313}
   potatoGun: {fileID: 787718864}
   gameOverScreen: {fileID: 2083687941}
