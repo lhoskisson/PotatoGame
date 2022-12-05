@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public int initialCropRows;
     public int initialCropColumns;
 
+    public GameObject enemyManager;
     public GameObject potatoManager;
     public GameObject potatoGun;
     public GameObject gameOverScreen;
@@ -23,6 +24,8 @@ public class LevelManager : MonoBehaviour
         Timer.levelTime = Timer.startLevelTime;
         if (potatoManager == null)
             potatoManager = GameObject.FindWithTag("Potato Manager");
+        if (enemyManager == null)
+            enemyManager = GameObject.Find("EnemyManager");
     }
 
     void Update()
@@ -35,6 +38,8 @@ public class LevelManager : MonoBehaviour
         {
             //advance one level
             Timer.levelTime = 0;
+            // set pathing mode of enemies to false (crop pathing)
+            enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
         }
         if(Input.GetKeyDown("["))
         {
@@ -43,18 +48,24 @@ public class LevelManager : MonoBehaviour
             {
                 ResetAmmoTracker();
                 Timer.levelTime = Timer.startLevelTime;
+                // set pathing mode of enemies to false (crop pathing)
+                enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                 SceneManager.LoadScene("Menu");
             }
             else if (SceneManager.GetActiveScene().name == "Level 2")
             {
                 TrackAmmo();
                 Timer.levelTime = Timer.startLevelTime;
+                // set pathing mode of enemies to false (crop pathing)
+                enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                 SceneManager.LoadScene("Level 1");
             }
             else if (SceneManager.GetActiveScene().name == "Level 3")
             {
                 TrackAmmo();
                 Timer.levelTime = Timer.startLevelTime;
+                // set pathing mode of enemies to false (crop pathing)
+                enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                 SceneManager.LoadScene("Level 2");
             }
         }
@@ -62,10 +73,8 @@ public class LevelManager : MonoBehaviour
         //lose condition
         if (!gameOver && potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() <= 0 && potatoManager.GetComponent<PotatoManager>().PotatoCount() == 0)
         {
-            // resetting the pathing for the enemies so they have the proper pathing mode when the player restarts
-            BroccoliBehavior.pathingMode = false;
-            CarrotBehavior.pathingMode = false;
-            TomatoBehavior.pathingMode = false;
+            // set pathing mode of enemies to false (crop pathing)
+            enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
 
             Timer.levelTime = 0;
             ResetAmmoTracker();
@@ -91,11 +100,15 @@ public class LevelManager : MonoBehaviour
                 if (SceneManager.GetActiveScene().name == "Level 1")
                 {
                     Timer.levelTime = Timer.startLevelTime;
+                    // set pathing mode of enemies to false (crop pathing)
+                    enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                     SceneManager.LoadScene("Level 2");
                 }
                 else if (SceneManager.GetActiveScene().name == "Level 2")
                 {
                     Timer.levelTime = Timer.startLevelTime;
+                    // set pathing mode of enemies to false (crop pathing)
+                    enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                     SceneManager.LoadScene("Level 3");
                 }
                 else if (SceneManager.GetActiveScene().name == "Level 3")
@@ -104,6 +117,8 @@ public class LevelManager : MonoBehaviour
                     gameOverScreen.SetActive(true);
                     gameOverScreen.GetComponent<GameOver>().DisplayWin();
                     ResetAmmoTracker();
+                    // set pathing mode of enemies to false (crop pathing)
+                    enemyManager.GetComponent<EnemyManager>().setPathingMode(false);
                     Timer.levelTime = Timer.startLevelTime;
                 }
             }

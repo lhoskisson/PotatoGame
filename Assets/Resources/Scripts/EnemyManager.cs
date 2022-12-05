@@ -26,6 +26,12 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+    public void setPathingMode(bool mode)
+    {
+        CarrotBehavior.pathingMode = mode;
+        BroccoliBehavior.pathingMode = mode;
+        TomatoBehavior.pathingMode = mode;
+    }
     public void spawnCarrot(Vector3 spawnPosition)
     {
         // spawning the carrots within an area around the spawn point, area defined by Random.Range()
