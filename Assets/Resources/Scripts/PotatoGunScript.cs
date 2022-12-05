@@ -277,18 +277,19 @@ public class PotatoGunScript : MonoBehaviour
 		
 		//check if there is already a potato at the grid position.
 		GameObject closestPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
-		if(gridPosition == closestPotato.transform.position)
-			return false;
+        if (closestPotato != null)
+		    if(gridPosition == closestPotato.transform.position)
+			    return false;
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-           // BroccoliBehavior.pathingMode = false;
-            //CarrotBehavior.pathingMode = false;
-            //TomatoBehavior.pathingMode = false;
+            BroccoliBehavior.pathingMode = false;
+            CarrotBehavior.pathingMode = false;
+            TomatoBehavior.pathingMode = false;
         }
 
         return true;
