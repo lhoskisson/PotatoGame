@@ -6,4 +6,6 @@ using UnityEngine;
 public class GunManager : ScriptableObject
 {
     public bool[] modesEnabled = new bool[4];
+
+    public int timesInitialized = 0;
 }

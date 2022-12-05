@@ -52,8 +52,17 @@ public class PotatoGunScript : MonoBehaviour
 
         //Set initial modes active.
         //May have to move this elsewhere
-        for(int i = 0; i < 4; i++) {
-            myUI.toggleUI(i, (i == 0));
+
+        if(myModes.timesInitialized <= 4) {
+            myModes.timesInitialized++;
+        }
+
+        for(int j = 0; j < 4; j++) {
+            myUI.toggleUI(j, false);
+        }
+
+        for(int i = 0; i < myModes.timesInitialized; i++) {
+            myUI.toggleUI(i, true);
         }
     }
 
@@ -271,11 +280,11 @@ public class PotatoGunScript : MonoBehaviour
 		ammoCount -= plantCost;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-            BroccoliBehavior.pathingMode = false;
-            CarrotBehavior.pathingMode = false;
-            TomatoBehavior.pathingMode = false;
+            //BroccoliBehavior.pathingMode = false;
+            //CarrotBehavior.pathingMode = false;
+            //TomatoBehavior.pathingMode = false;
         }
 
         return true;

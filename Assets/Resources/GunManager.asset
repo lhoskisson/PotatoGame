@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GunManager
   m_EditorClassIdentifier: 
   modesEnabled: 01000000
+  timesInitialized: 0
