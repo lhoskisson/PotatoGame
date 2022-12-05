@@ -2441,11 +2441,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4083099651515418613, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
       propertyPath: m_Name
-      value: MiniMap 1
+      value: MiniMap Camera
       objectReference: {fileID: 0}
     - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: ae9992d0ced7dcc418323a60179f1b4b, type: 2}
+    - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
       propertyPath: orthographic size
-      value: 19.542124
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083099651515418615, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 4083099651515418616, guid: 48643680b842bfe4bae0b34e92213b1d, type: 3}
       propertyPath: m_RootOrder
@@ -110825,7 +110845,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2131891347}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -111147,7 +111167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1012.6188, y: 419.785}
+  m_AnchoredPosition: {x: 318, y: 124.9}
   m_SizeDelta: {x: 155, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1456247885
@@ -111932,7 +111952,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2131891347}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -112015,7 +112035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1754122025}
-  canvas: {fileID: 0}
+  canvas: {fileID: 2131891347}
 --- !u!114 &1713451907
 MonoBehaviour:
   m_ObjectHideFlags: 0
