@@ -280,11 +280,11 @@ public class PotatoGunScript : MonoBehaviour
 		ammoCount -= plantCost;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-            //BroccoliBehavior.pathingMode = false;
-            //CarrotBehavior.pathingMode = false;
-            //TomatoBehavior.pathingMode = false;
+            BroccoliBehavior.pathingMode = false;
+            CarrotBehavior.pathingMode = false;
+            TomatoBehavior.pathingMode = false;
         }
 
         return true;
