@@ -118,5 +118,10 @@ public class TomatoBehavior : MonoBehaviour
             // they hath touched the tater
             hasTouchedPotato = true;
         }
+        if(collision.gameObject.name == "Farmer" && pathingMode == true)
+        {
+            Explode();
+            Destroy(gameObject);
+        }
     }
 }

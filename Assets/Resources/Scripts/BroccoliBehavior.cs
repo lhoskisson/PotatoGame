@@ -40,8 +40,15 @@ public class BroccoliBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the broccoli are pathing to the farmer,
+        // the broccoli can move and throw broccoli at the farmer no matter how far away they are.
+        if(pathingMode == true)
+        {
+            moveBroccoli();
+            throwBroccoli();
+        }
         // if statement moves broccoli towards a potato until one is in range, then attacks if one is.
-        if (isInRange == true && (targetPotato != null || pathingMode == true)) // maybe we can remove the targetPotato check to have them throw at the farmer.
+        if (isInRange == true && (targetPotato != null || pathingMode == true)) 
             throwBroccoli();
         else
             moveBroccoli();
@@ -53,7 +60,8 @@ public class BroccoliBehavior : MonoBehaviour
         if (pathingMode == true)
         {
             // moving towards the farmer
-            transform.position = Vector3.MoveTowards(transform.position, Farmer.transform.position, (broccoliSpeed * Time.smoothDeltaTime));
+            transform.position = Vector3
+                .MoveTowards(transform.position, Farmer.transform.position, (broccoliSpeed * Time.smoothDeltaTime));
             // setting is in range to true so the broccoli will attack the farmer when in range
             if (Vector3.Distance(gameObject.transform.position, Farmer.transform.position) < 3.0f)
                 isInRange = true;
@@ -64,8 +72,10 @@ public class BroccoliBehavior : MonoBehaviour
         }
         else if(targetPotato == null)
         {
-            // setting target potato to the next closest potato if target potato hasn't been set or the first has been destroyed
-            targetPotato = potatoManager.GetComponent<PotatoManager>().GetClosestPotato(transform.position);
+            // setting target potato to the next closest potato if target
+            // potato hasn't been set or the first has been destroyed
+            targetPotato = potatoManager.GetComponent<PotatoManager>()
+                .GetClosestPotato(transform.position);
             // setting isInRange to false while broccoli enemies search for another potato
             isInRange = false;
         }
