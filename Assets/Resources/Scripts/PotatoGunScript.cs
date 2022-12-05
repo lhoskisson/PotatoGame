@@ -35,7 +35,7 @@ public class PotatoGunScript : MonoBehaviour
     public float spray = 0f;
     public int timesFired = 1;
     public int mode = 0;
-    public bool[] modesEnabled = new bool[4];
+    public GunManager myModes;
 
     //Round count
     private int ammoCount;
@@ -51,8 +51,8 @@ public class PotatoGunScript : MonoBehaviour
 		   grid = GameObject.Find("Grid");
 
         //Set initial modes active.
+        //May have to move this elsewhere
         for(int i = 0; i < 4; i++) {
-            modesEnabled[i] = (i == 0);
             myUI.toggleUI(i, (i == 0));
         }
     }
@@ -94,7 +94,7 @@ public class PotatoGunScript : MonoBehaviour
     //Toggles modes that are available
     public void toggleModes(int which) {
         if(which >= 0 && which < 4) {
-            modesEnabled[which] = !modesEnabled[which];
+            myModes.modesEnabled[which] = !myModes.modesEnabled[which];
         }
     }
 
@@ -105,17 +105,17 @@ public class PotatoGunScript : MonoBehaviour
         int oldMode = mode;
 
         //Key 1: Default PotatoGun
-        if(Input.GetKey(KeyCode.Alpha1) && mode != 0 && modesEnabled[0]) {
+        if(Input.GetKey(KeyCode.Alpha1) && mode != 0 && myModes.modesEnabled[0]) {
             mode = 0;
-        } else if(Input.GetKey(KeyCode.Alpha2) && mode != 1 && modesEnabled[1]) {
+        } else if(Input.GetKey(KeyCode.Alpha2) && mode != 1 && myModes.modesEnabled[1]) {
             //Key 2:Fries MachineGun
 
             mode = 1;
-        } else if(Input.GetKey(KeyCode.Alpha3) && mode != 2 && modesEnabled[2]) {
+        } else if(Input.GetKey(KeyCode.Alpha3) && mode != 2 && myModes.modesEnabled[2]) {
             //Key 3: Slow, but powerful
 
             mode = 2;
-        } else if(Input.GetKey(KeyCode.Alpha4) && mode != 3 && modesEnabled[3]) {
+        } else if(Input.GetKey(KeyCode.Alpha4) && mode != 3 && myModes.modesEnabled[3]) {
             //Key 4: Shotgun
 
             mode = 3;
@@ -127,7 +127,7 @@ public class PotatoGunScript : MonoBehaviour
                 mode = 0;
             }
 
-            while(!modesEnabled[mode]) {
+            while(!myModes.modesEnabled[mode]) {
                 mode++;
 
                 if(mode > 3) {
@@ -142,7 +142,7 @@ public class PotatoGunScript : MonoBehaviour
                     mode = 3;
             }
 
-            while(!modesEnabled[mode]) {
+            while(!myModes.modesEnabled[mode]) {
                 mode--;
 
                 if(mode < 0) {
@@ -271,11 +271,11 @@ public class PotatoGunScript : MonoBehaviour
 		ammoCount -= plantCost;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
-        //if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
+        if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
         {
-            //BroccoliBehavior.pathingMode = false;
-            //CarrotBehavior.pathingMode = false;
-            //TomatoBehavior.pathingMode = false;
+            BroccoliBehavior.pathingMode = false;
+            CarrotBehavior.pathingMode = false;
+            TomatoBehavior.pathingMode = false;
         }
 
         return true;

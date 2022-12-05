@@ -7,6 +7,7 @@ public class GunUI : MonoBehaviour
 {
     public Toggle[] myGunUI = new Toggle[4];
     public PotatoGunScript myGun;
+    public GunManager myModes;
 
 
     public int current;
@@ -39,7 +40,7 @@ public class GunUI : MonoBehaviour
     //Tells the gun to swap to a certain mode
     //Used when buttons are pushed 
     public void swap(int which) {
-        if(myGun.modesEnabled[which]) {
+        if(myModes.modesEnabled[which]) {
             myGun.setMode(which);
             current = which;
         }
@@ -59,7 +60,7 @@ public class GunUI : MonoBehaviour
     //Also updates modesEnabled in PotatoGun
     public void toggleUI(int which, bool tog) {
         myGunUI[which].enabled = tog;
-        myGun.modesEnabled[which] = tog;
+        myModes.modesEnabled[which] = tog;
         myGunUI[which].interactable = tog;
     }
 }
