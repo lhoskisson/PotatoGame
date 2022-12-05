@@ -9,6 +9,6 @@ public class GunManagerSet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myModes.timesInitialized = 0;
+        myModes.timesInitialized = 1;
     }
 }

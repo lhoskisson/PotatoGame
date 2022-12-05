@@ -26113,6 +26113,7 @@ MonoBehaviour:
   - {fileID: 1914951639}
   - {fileID: 1011688352}
   myGun: {fileID: 1042468100}
+  myModes: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
   current: 0
 --- !u!114 &2131891353
 MonoBehaviour:

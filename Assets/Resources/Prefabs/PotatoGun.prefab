@@ -105,11 +105,13 @@ MonoBehaviour:
   farmer: {fileID: 0}
   proj: {fileID: 9181924630792035281, guid: ef7ab3f290b421e4a9ffec47b0d04999, type: 3}
   gunTip: {fileID: 130575316790277909}
+  myUI: {fileID: 0}
   cooldown: 0.2
   timeCounter: 0
   spray: 0
   timesFired: 1
   mode: 0
+  myModes: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
 --- !u!1001 &492769866871298492
 PrefabInstance:
   m_ObjectHideFlags: 0

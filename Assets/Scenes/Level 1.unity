@@ -106273,6 +106273,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1448255892}
     - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
+      propertyPath: myModes
+      value: 
+      objectReference: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
+    - target: {fileID: 130575318378528086, guid: 7c887862585d984458d33982e0d270b2, type: 3}
       propertyPath: potatoManager
       value: 
       objectReference: {fileID: 446670313}
@@ -106606,6 +106610,7 @@ GameObject:
   - component: {fileID: 2131891348}
   - component: {fileID: 2131891352}
   - component: {fileID: 2131891353}
+  - component: {fileID: 2131891354}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -106720,6 +106725,7 @@ MonoBehaviour:
   - {fileID: 1914951639}
   - {fileID: 1011688352}
   myGun: {fileID: 1042468100}
+  myModes: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
   current: 0
 --- !u!114 &2131891353
 MonoBehaviour:
@@ -106734,6 +106740,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &2131891354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131891347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec17548a29023c046ad518b4dfdd6cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myModes: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
 --- !u!1001 &53623712700101528
 PrefabInstance:
   m_ObjectHideFlags: 0
