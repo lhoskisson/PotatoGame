@@ -262,6 +262,7 @@ public class PotatoGunScript : MonoBehaviour
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
         }
+        targetCrop = null;
 		return inRange;
     }
 	
