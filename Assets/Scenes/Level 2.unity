@@ -42803,6 +42803,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2131891351}
     m_Modifications:
+    - target: {fileID: 1816673884062838337, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
+      propertyPath: miniMap
+      value: 
+      objectReference: {fileID: 1679896643}
     - target: {fileID: 1816673884062838349, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
       propertyPath: m_Name
       value: GameOver
@@ -42845,7 +42849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1816673884062838350, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 385.28
+      value: 402.99
       objectReference: {fileID: 0}
     - target: {fileID: 1816673884062838350, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42881,7 +42885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1816673884062838350, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00027275
+      value: -0.001029
       objectReference: {fileID: 0}
     - target: {fileID: 1816673884062838350, guid: 5d4cf5922819fd24c91f3a27df27bd16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
