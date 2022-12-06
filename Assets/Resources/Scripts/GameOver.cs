@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameObject miniMap;
     public void Restart()
     {
+        Time.timeScale = 1f;
         Timer.levelTime = Timer.startLevelTime;
         SceneManager.LoadScene("Level 1");
     }
@@ -27,6 +29,8 @@ public class GameOver : MonoBehaviour
 
     public void DisplayLoss()
     {
+        miniMap.SetActive(false);
+        Time.timeScale = 0f;
         Transform loseTextTransform = transform.Find("LoseText");
         if (loseTextTransform != null)
             loseTextTransform.gameObject.SetActive(true);

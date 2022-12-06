@@ -50,7 +50,7 @@ public class FarmerMovement : MonoBehaviour
         //If farmer is not moving, this sets the speed back to 1.
         if ( (x == 0) && (y == 0)){
             
-            speed = 1f;
+            speed = 3f;
         }
         
         //Checks the farmers speed and sets it to the max speed.
@@ -69,9 +69,6 @@ public class FarmerMovement : MonoBehaviour
 
         //Sets the farmers rigidbody velocity.
         rb.velocity = velocity;
-
-    
-
     }
     public void MouseRotation(){
         //Rotating Camera
@@ -81,7 +78,7 @@ public class FarmerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision){
 
-        float force = speed * 2;
+        float force = speed;
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
