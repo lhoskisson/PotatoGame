@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public GameObject miniMap;
+    public GameObject potato;
+    public GameObject potatoDead;
     public void Restart()
     {
         Time.timeScale = 1f;
@@ -22,6 +24,10 @@ public class GameOver : MonoBehaviour
 
     public void DisplayWin()
     {
+        miniMap.SetActive(false);
+        potato.SetActive(false);
+        potatoDead.SetActive(false);
+        Time.timeScale = 0f;
         Transform winTextTransform = transform.Find("WinText");
         if (winTextTransform != null)
             winTextTransform.gameObject.SetActive(true);
@@ -30,6 +36,8 @@ public class GameOver : MonoBehaviour
     public void DisplayLoss()
     {
         miniMap.SetActive(false);
+        potato.SetActive(false);
+        potatoDead.SetActive(false);
         Time.timeScale = 0f;
         Transform loseTextTransform = transform.Find("LoseText");
         if (loseTextTransform != null)

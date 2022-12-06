@@ -8,6 +8,9 @@ public class PotatoGunScript : MonoBehaviour
     //UI script to keep count of ammo
 	public Text ammo = null;
 
+    public GameObject potato;
+    public GameObject potatoDead;
+
     //GameObjects used to harvest potato
     public GameObject potatoManager;
     private GameObject targetCrop;
@@ -217,7 +220,10 @@ public class PotatoGunScript : MonoBehaviour
 
         timeCounter = timeCounter + Time.smoothDeltaTime;
 
-        ammo.text = "Ammo Count: " + ammoCount;
+        ammo.text = ": " + ammoCount;
+        if(ammoCount == 0){
+            potatoDead.SetActive(true);
+        }
 
         //Firing Projectile
         if((Input.GetKey(KeyCode.Mouse0)) && timeCounter > cooldown) {
@@ -226,6 +232,8 @@ public class PotatoGunScript : MonoBehaviour
             
             if (ammoCount > 0){
                 ammoCount--;
+                potato.SetActive(true);
+                
 
                 for(int i = 0; i < timesFired; i++) {
                     GameObject projectile = Instantiate(proj);
@@ -241,6 +249,8 @@ public class PotatoGunScript : MonoBehaviour
                 
                 timeCounter = 0;
             } else {
+                potato.SetActive(false);
+                potatoDead.SetActive(false);
                 ammo.text = "Out of Ammo!!";
             }
         }
@@ -260,6 +270,8 @@ public class PotatoGunScript : MonoBehaviour
         if(inRange == true){
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
+            potato.SetActive(true);
+            potatoDead.SetActive(false);
         }
         targetCrop = null;
 		return inRange;
