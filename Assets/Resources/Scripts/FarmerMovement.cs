@@ -9,7 +9,10 @@ public class FarmerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
     [SerializeField] private float accelerationTime = 3f;
-    [SerializeField] private float maxSpeed = 7f;
+    [SerializeField] private float maxSpeed = 8f;
+
+    public float coolDown = .2f;
+    public float coolDownTimer = 0f;
 
     private bool isKnocked = false;
     public PotatoGunScript ammoCountLink;
@@ -79,6 +82,7 @@ public class FarmerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
 
         float force = speed;
+        coolDownTimer = coolDownTimer + Time.smoothDeltaTime;
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
@@ -114,7 +118,7 @@ public class FarmerMovement : MonoBehaviour
     }
     private IEnumerator timer(Rigidbody2D farmer){
 
-        float pushTimer = .5f;
+        float pushTimer = .6f;
         yield return new WaitForSeconds(pushTimer);
         farmer.velocity = Vector3.zero;
         isKnocked = false;  
