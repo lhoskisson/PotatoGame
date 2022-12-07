@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: {fileID: 0}
+  potato: {fileID: 0}
+  potatoDead: {fileID: 0}
   potatoManager: {fileID: 0}
   grid: {fileID: 0}
   plantCost: 5
@@ -112,6 +114,8 @@ MonoBehaviour:
   timesFired: 1
   mode: 0
   myModes: {fileID: 11400000, guid: a948bb761eb517b44ae7c11c709da54a, type: 2}
+  harvestingCooldown: 0.5
+  plantingCooldown: 0.5
 --- !u!1001 &492769866871298492
 PrefabInstance:
   m_ObjectHideFlags: 0

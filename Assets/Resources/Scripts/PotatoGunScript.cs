@@ -44,6 +44,12 @@ public class PotatoGunScript : MonoBehaviour
     private int ammoCount;
     private bool inRange = false;
 
+    //time variables for planting/harvesting
+    public float harvestingCooldown;
+    public float plantingCooldown;
+    private float lastPlantTime = Timer.levelTime;
+    private float lastHarvestTime = Timer.levelTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,10 +85,10 @@ public class PotatoGunScript : MonoBehaviour
         changeMode();
         firingProjectiles();
 
-        if(Input.GetKeyDown("space")){
+        if(Input.GetKey("space")){
 		    cropHarvest();
         }
-        if(Input.GetKeyDown("c"))
+        if(Input.GetKey("c"))
         {
             cropPlant();
         }
@@ -267,9 +273,10 @@ public class PotatoGunScript : MonoBehaviour
             inRange = true;
         }
         
-        if(inRange == true){
+        if(inRange == true && (lastHarvestTime-Timer.levelTime) > harvestingCooldown){
             int harvested = potatoManager.GetComponent<PotatoManager>().HarvestPotato(targetCrop, 0f);
             ammoCount += harvested;
+            lastHarvestTime = Timer.levelTime;
             potato.SetActive(true);
             potatoDead.SetActive(false);
         }
@@ -279,6 +286,10 @@ public class PotatoGunScript : MonoBehaviour
 	
 	public bool cropPlant(){
 		
+        //check that cooldown has passed
+        if(lastPlantTime-Timer.levelTime < plantingCooldown)
+            return false;
+
 		//check that the player has enough ammo to plant.
 		if(ammoCount < plantCost)
 			return false;
@@ -295,6 +306,7 @@ public class PotatoGunScript : MonoBehaviour
 		
 		potatoManager.GetComponent<PotatoManager>().SpawnPotato(gridPosition);
 		ammoCount -= plantCost;
+        lastPlantTime = Timer.levelTime;
 
         // checking if the potatoCount has increased to 1, changing enemy pathing static variable when first new crop is planted
         if (potatoManager.GetComponent<PotatoManager>().PotatoCount() == 1)
