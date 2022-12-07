@@ -7,9 +7,9 @@ public class GunManagerSet : MonoBehaviour
     public GunManager myModes;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        myModes.timesInitialized = 1;
+        myModes.timesInitialized = 0;
 
         for(int i = 1; i < 4; i++) {
             myModes.modesEnabled[i] = false;
