@@ -105956,6 +105956,8 @@ MonoBehaviour:
   maxSpeed: 8
   coolDown: 0.2
   coolDownTimer: 0
+  knockImmunity: 0.75
+  knockTime: 0
   ammoCountLink: {fileID: 1042468100}
 --- !u!50 &1448255896
 Rigidbody2D:

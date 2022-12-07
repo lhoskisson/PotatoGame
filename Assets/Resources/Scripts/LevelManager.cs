@@ -87,13 +87,14 @@ public class LevelManager : MonoBehaviour
         if (Timer.levelTime <= 0)
         {
             //harvest all potato crops
+            int harvest = 0;
             GameObject[] potatoManagers = GameObject.FindGameObjectsWithTag("Potato Manager");
             foreach (GameObject pm in potatoManagers)
-                pm.GetComponent<PotatoManager>().HarvestAllPotatoes();
+                harvest += pm.GetComponent<PotatoManager>().HarvestAllPotatoes();
 
             if (!gameOver)
             {
-                TrackAmmo();
+                TrackAmmo(harvest);
 
                 //go to next level
                 //TODO: Add Next Level Menu for inbetween levels
@@ -134,11 +135,10 @@ public class LevelManager : MonoBehaviour
         initPotatoesSpawned = true;
     }
 
-    private void TrackAmmo()
+    private void TrackAmmo(int bonus=0)
     {
         //record ammoCount
-        ammoTracker = potatoGun.GetComponent<PotatoGunScript>().getAmmoCount();
-        Debug.Log(ammoTracker);
+        ammoTracker = potatoGun.GetComponent<PotatoGunScript>().getAmmoCount() + bonus;
     }
 
     private void ResetAmmoTracker()
