@@ -2721,7 +2721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2716422, y: 0.18900001}
   m_AnchorMax: {x: 0.72700006, y: 0.772}
-  m_AnchoredPosition: {x: -4.0000153, y: -30}
+  m_AnchoredPosition: {x: -4, y: -30}
   m_SizeDelta: {x: -392, y: -199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360157452
@@ -3007,7 +3007,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: In Veggie-Coup your potato cannon is your main line of defense. There are
     3 modifications to get for the potato cannon. The mandolin has high dps with
-    high ammo usage. The heater increases damage while sacraficing fire rate. The
+    high ammo usage. The heater increases damage while sacrificing fire rate. The
     fry slicer creates many projectiles in a spread, similar to a shotgun.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5287,7 +5287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2716422, y: 0.18900001}
   m_AnchorMax: {x: 0.72700006, y: 0.772}
-  m_AnchoredPosition: {x: -4.0000153, y: -30}
+  m_AnchoredPosition: {x: -4, y: -30}
   m_SizeDelta: {x: -392, y: -199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045305598
@@ -5768,7 +5768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2716422, y: 0.18900001}
   m_AnchorMax: {x: 0.72700006, y: 0.772}
-  m_AnchoredPosition: {x: -4.0000153, y: -30}
+  m_AnchoredPosition: {x: -4, y: -30}
   m_SizeDelta: {x: -392, y: -199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130191653
