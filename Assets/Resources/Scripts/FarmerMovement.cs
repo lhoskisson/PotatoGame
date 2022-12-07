@@ -11,6 +11,9 @@ public class FarmerMovement : MonoBehaviour
     [SerializeField] private float accelerationTime = 3f;
     [SerializeField] private float maxSpeed = 7f;
 
+    public float knockImmunity = .75f;
+    public float knockTime = 0f;
+
     private bool isKnocked = false;
     public PotatoGunScript ammoCountLink;
     
@@ -18,6 +21,7 @@ public class FarmerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     void Update(){
+        knockTime += Time.smoothDeltaTime;
         
         //If statement to check if the farmer is being knocked back by the enemy.
         //If it is false it allows the farmer to move and sets the friction to 6.
@@ -84,8 +88,9 @@ public class FarmerMovement : MonoBehaviour
         float force = speed * 2;
         Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
-        if ((collision.gameObject.tag == "Enemy") && (collision.gameObject.name != "Projectile")){
+        if (((collision.gameObject.tag == "Enemy") || (collision.gameObject.name != "Projectile")) && knockTime > knockImmunity){
             if (enemy != null){
+                knockTime = 0f;
                 isKnocked = true;
                 Vector3 distance = transform.position - enemy.transform.position;
                 distance = distance.normalized * force;
@@ -115,6 +120,7 @@ public class FarmerMovement : MonoBehaviour
             ammoCountLink.GetComponent<PotatoGunScript>().setAmmoCount(newAmmo);
         }
     }
+
     private IEnumerator timer(Rigidbody2D farmer){
 
         float pushTimer = .5f;
