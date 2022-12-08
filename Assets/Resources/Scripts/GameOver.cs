@@ -27,7 +27,6 @@ public class GameOver : MonoBehaviour
         miniMap.SetActive(false);
         potato.SetActive(false);
         potatoDead.SetActive(false);
-        Time.timeScale = 0f;
         Transform winTextTransform = transform.Find("WinText");
         if (winTextTransform != null)
             winTextTransform.gameObject.SetActive(true);
