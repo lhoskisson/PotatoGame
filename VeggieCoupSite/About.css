@@ -1,5 +1,5 @@
  .u-section-1 {
-  background-image: url("images/Dirt_Tilev2.png");
+  background-image: url("images/Dirt_Tilev2.png?rand=483f");
   background-position: 50% 50%;
 }
 
@@ -39,7 +39,7 @@
     width: 340px;
   }
 } .u-section-2 {
-  background-image: url("images/Dirt_Tilev2.png");
+  background-image: url("images/Dirt_Tilev2.png?rand=1821");
   background-position: 50% 50%;
 }
 
@@ -48,11 +48,11 @@
 }
 
 .u-section-2 .u-text-1 {
-  margin: 100px auto 0;
+  margin: 90px auto 0;
 }
 
 .u-section-2 .u-layout-wrap-1 {
-  margin-top: 60px;
+  margin-top: 70px;
   margin-bottom: 60px;
 }
 
@@ -207,12 +207,15 @@
 }
 
 .u-section-3 .u-text-2 {
-  margin: 20px 197px 0;
+  width: 746px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 36px auto 0;
 }
 
 .u-section-3 .u-gallery-1 {
   height: 1231px;
-  margin-top: 76px;
+  margin-top: 60px;
   margin-bottom: 60px;
   grid-gap: 17px 17px;
 }
@@ -335,11 +338,6 @@
     min-height: 526px;
   }
 
-  .u-section-3 .u-text-2 {
-    margin-left: 97px;
-    margin-right: 97px;
-  }
-
   .u-section-3 .u-gallery-1 {
     height: 1063px;
   }
@@ -403,8 +401,7 @@
   }
 
   .u-section-3 .u-text-2 {
-    margin-left: 0;
-    margin-right: 0;
+    width: 720px;
   }
 
   .u-section-3 .u-gallery-1 {
@@ -421,6 +418,10 @@
     min-height: 4355px;
   }
 
+  .u-section-3 .u-text-2 {
+    width: 540px;
+  }
+
   .u-section-3 .u-gallery-1 {
     height: 5616px;
   }
@@ -433,6 +434,10 @@
 @media (max-width: 575px) {
   .u-section-3 .u-sheet-1 {
     min-height: 2612px;
+  }
+
+  .u-section-3 .u-text-2 {
+    width: 340px;
   }
 
   .u-section-3 .u-gallery-1 {
